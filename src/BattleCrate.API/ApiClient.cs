@@ -1,0 +1,74 @@
+﻿using BattleCrate.API.Operations;
+using System;
+
+namespace BattleCrate.API
+{
+    public class ApiClient : BaseApiClient, IApiClient
+    {
+        #region Fields
+        private ICrateOperations _crateOperations;
+        private ICratePackageOperations _cratePackageOperations;
+        private IRegionOperations _regionOperations;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Gets the API operations for Crates.
+        /// </summary>
+        public virtual ICrateOperations Crates => _crateOperations;
+
+        /// <summary>
+        /// Gets the API operations for Crate Packages.
+        /// </summary>
+        public virtual ICratePackageOperations CratePackages => _cratePackageOperations;
+
+        /// <summary>
+        /// Gets the API operations for Regions.
+        /// </summary>
+        public virtual IRegionOperations Regions => _regionOperations;
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Creates a new BattleCrate API client.
+        /// </summary>
+        public ApiClient()
+            : base()
+            => Initialize();
+
+        /// <summary>
+        /// Creates a new BattleCrate API client with an API key.
+        /// </summary>
+        /// <param name="apiKey">Your BattleCrate API key.</param>
+        public ApiClient(string apiKey)
+            : base(apiKey)
+            => Initialize();
+
+        /// <summary>
+        /// Creates a new BattleCrate API client with a custom base URI.
+        /// </summary>
+        /// <param name="baseApiUri">The base URI to use for the API.</param>
+        public ApiClient(Uri baseApiUri)
+            : base(baseApiUri)
+            => Initialize();
+
+        /// <summary>
+        /// Creates a new BattleCrate API client with a custom base URI and an API key.
+        /// </summary>
+        /// <param name="baseApiUri">The base URI to use for the API.</param>
+        /// <param name="apiKey">Your BattleCrate API key.</param>
+        public ApiClient(Uri baseApiUri, string apiKey)
+            : base(baseApiUri, apiKey)
+            => Initialize();
+        #endregion
+
+        #region Private Methods
+        private void Initialize()
+        {
+            _crateOperations = new CrateOperations(this);
+            _cratePackageOperations = new CratePackageOperations(this);
+            _regionOperations = new RegionOperations(this);
+        }
+        #endregion
+    }
+}
