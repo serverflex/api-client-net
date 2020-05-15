@@ -137,18 +137,18 @@ namespace BattleCrate.API
         async Task<TEntity[]> IApiRequestor.RequestEntireListJsonSerializedAsync<TEntity>(string path, CancellationToken cancellationToken)
         {
             var page = 1;
-            var currentPage = 1;
+            var totalPages = 1;
 
             var entities = new List<TEntity>();
 
-            while (page <= currentPage)
+            while (page <= totalPages)
             {
                 var pageOfEntities = await ((IApiRequestor)this).RequestResultResponseJsonSerializedAsync<TEntity>(50, page, path, cancellationToken).ConfigureAwait(false);
 
                 entities.AddRange(pageOfEntities.Results);
 
                 page++;
-                currentPage = pageOfEntities.TotalPages;
+                totalPages = pageOfEntities.TotalPages;
             }
 
             return entities.ToArray();
