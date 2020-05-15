@@ -66,8 +66,8 @@ namespace BattleCrate.API
         private void Initialize()
         {
             _crateOperations = new CrateOperations(this);
-            _cratePackageOperations = new CratePackageOperations(this);
-            _regionOperations = new RegionOperations(this);
+            //_cratePackageOperations = new CratePackageOperations(this);
+            //_regionOperations = new RegionOperations(this);
         }
         #endregion
     }

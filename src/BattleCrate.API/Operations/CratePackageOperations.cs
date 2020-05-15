@@ -1,6 +1,6 @@
 ﻿namespace BattleCrate.API.Operations
 {
-    public class CratePackageOperations : BaseOperations, ICratePackageOperations
+    public class CratePackageOperations : BaseOperations//, ICratePackageOperations
     {
         #region Constructors
         /// <summary>

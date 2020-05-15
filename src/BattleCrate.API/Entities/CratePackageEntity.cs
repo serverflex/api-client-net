@@ -6,7 +6,13 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets whether this Crate Package can have services deployed to it.
+        /// Gets or sets the URL of the background associated with the Crate Package.
+        /// </summary>
+        [JsonProperty("backgroundUrl")]
+        public string BackgroundUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the Crate Package can have services deployed to it.
         /// </summary>
         [JsonProperty("canDeploy")]
         public bool CanDeploy { get; set; }
@@ -16,6 +22,12 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL of the icon associated with the Crate Package.
+        /// </summary>
+        [JsonProperty("iconUrl")]
+        public string IconUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate Package's unique name.
