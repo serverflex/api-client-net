@@ -38,12 +38,6 @@ namespace BattleCrate.API
         /// Gets or sets how long to wait between retrying operations. Default value: 3 seconds.
         /// </summary>
         public TimeSpan RetryDelay { get; set; } = TimeSpan.FromSeconds(3);
-        Uri IBaseApiClient.BaseApiUri { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        HttpClient IBaseApiClient.HttpClient => throw new NotImplementedException();
-
-        int IBaseApiClient.RetryCount { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        TimeSpan IBaseApiClient.RetryDelay { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         #endregion
 
         #region REST Methods
@@ -79,7 +73,7 @@ namespace BattleCrate.API
                 errors = JsonConvert.DeserializeObject<ApiError[]>(obj["errors"].ToString());
 
                 if (errors.Length > 1)
-                    error = $"{errors.Length} {(errors.Length == 1 ? "error" : "errors")} occurred.";
+                    error = $"{errors.Length} errors occurred.";
                 else
                     error = string.IsNullOrWhiteSpace(errors[0].Message) ? "Unspecified error" : errors[0].Message;
             }
@@ -224,7 +218,7 @@ namespace BattleCrate.API
             => Initialize(baseApiUri, null, false);
 
         /// <summary>
-        /// Creates a new BattleCrate API client with a custom base URI and an API key.
+        /// Creates a new BattleCrate API client with a custom base URI and and API key.
         /// </summary>
         /// <param name="baseApiUri">The base URI to use for the API.</param>
         /// <param name="apiKey">Your BattleCrate API key.</param>
