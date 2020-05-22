@@ -42,7 +42,7 @@ namespace BattleCrate.API
 
         #region REST Methods
         /// <summary>
-        /// Sends a raw REST request to the API. Includes error handling logic but no reauthorisation or retry logic.
+        /// Sends a raw REST request to the API. Includes error handling logic but no retry logic.
         /// </summary>
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
@@ -86,7 +86,7 @@ namespace BattleCrate.API
         }
 
         /// <summary>
-        /// Sends a REST request to the API. Includes retry logic and reauthorization.
+        /// Sends a REST request to the API. Includes retry logic.
         /// </summary>
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
@@ -95,7 +95,7 @@ namespace BattleCrate.API
             => ((IApiRequestor)this).RequestAsync(method, path, SerializeContent(content), cancellationToken);
 
         /// <summary>
-        /// Sends a REST request to the API. Includes retry logic and reauthorization.
+        /// Sends a REST request to the API. Includes retry logic.
         /// </summary>
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>

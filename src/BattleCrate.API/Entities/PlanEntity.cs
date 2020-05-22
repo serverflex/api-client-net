@@ -6,13 +6,13 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the amount of backip-allocated-storage (in MB) provided by this Plan.
+        /// Gets or sets the amount of backup-allocated-storage (in MB) provided by the Plan.
         /// </summary>
         [JsonProperty("backupsInMb")]
         public int BackupStorage { get; set; }
 
         /// <summary>
-        /// Gets or sets whether this Plan can currently be deployed.
+        /// Gets or sets whether the Plan can currently be deployed.
         /// </summary>
         [JsonProperty("canUse")]
         public bool CanUse { get; set; }
@@ -78,7 +78,7 @@ namespace BattleCrate.API.Entities
         public string RegionName { get; set; }
 
         /// <summary>
-        /// Gets or sets the amount of storage (in MB) provided by this Plan.
+        /// Gets or sets the amount of storage (in MB) provided by the Plan.
         /// </summary>
         [JsonProperty("storageInMb")]
         public int Storage { get; set; }

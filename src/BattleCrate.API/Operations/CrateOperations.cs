@@ -41,9 +41,9 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get the number of players that are currently connected to a Crate.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the crate to get the active player count for.</param>
+        /// <param name="crateUuid">The UUID of the Crate to get the active player count for.</param>
         public Task<CratePlayersEntity> GetPlayersAsync(Guid crateUuid, CancellationToken cancellationToken = default)
-            => ApiRequestor.RequestJsonSerializedAsync<CratePlayersEntity>(HttpMethod.Get, $"crate/{crateUuid}/players", null, cancellationToken);
+            => ApiRequestor.RequestJsonSerializedAsync<CratePlayersEntity>(HttpMethod.Get, $"crate/{crateUuid}/players", cancellationToken);
 
         /// <summary>
         /// Get all of the Crates in your account. The returned Crates are sorted by date created in acsending order (oldest Crates at the top).

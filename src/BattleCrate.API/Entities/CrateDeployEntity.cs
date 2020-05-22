@@ -20,6 +20,7 @@ namespace BattleCrate.API.Entities
         /// <summary>
         /// Gets or sets the name of the Profile that should be used to configure the Crate.
         /// </summary>
+        [JsonProperty("profile")]
         public string ProfileName { get; set; }
 
         /// <summary>
