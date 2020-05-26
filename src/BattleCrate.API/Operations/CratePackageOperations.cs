@@ -24,7 +24,7 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get a page of Crate Packages. Crate Packages will be returned with a maximum of 3 Plans, 3 Profiles and 3 Regions. To get a full list of Plans, Profiles and Regions, use <see cref="GetCratePackageAsync" />.
         /// </summary>
-        /// <param name="limit">The maximum number of Crate Pakcages that can be returned.</param>
+        /// <param name="limit">The maximum number of Crate Packages that can be returned.</param>
         /// <param name="page">The cursor for the next batch of results.</param>
         public Task<ResultResponseEntity<CratePackageEntity>> ListCratePackagesAsync(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
             => ApiRequestor.RequestResultResponseJsonSerializedAsync<CratePackageEntity>(limit, page, "crate_package", cancellationToken);
