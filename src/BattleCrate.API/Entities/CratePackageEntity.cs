@@ -39,13 +39,13 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the Crate Package's Plans.
         /// </summary>
         [JsonProperty("plans")]
-        public PlanEntity[] Plans { get; set; }
+        public CratePlanEntity[] Plans { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate Package's Profiles.
         /// </summary>
         [JsonProperty("profiles")]
-        public ProfileEntity[] Profiles { get; set; }
+        public CrateProfileEntity[] Profiles { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate Package's Regions.

@@ -2,7 +2,7 @@
 
 namespace BattleCrate.API.Entities
 {
-    public class PlanEntity
+    public class CratePlanEntity
     {
         #region Properties
         /// <summary>

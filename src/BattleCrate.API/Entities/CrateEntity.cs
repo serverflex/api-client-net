@@ -34,13 +34,13 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the Crate's Plan.
         /// </summary>
         [JsonProperty("plan")]
-        public PlanEntity Plan { get; set; }
+        public CratePlanEntity Plan { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate's Profile.
         /// </summary>
         [JsonProperty("profile")]
-        public ProfileEntity Profile { get; set; }
+        public CrateProfileEntity Profile { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate's Region.
