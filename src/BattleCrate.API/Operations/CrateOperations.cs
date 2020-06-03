@@ -64,8 +64,8 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 30 seconds.</param>
-        public Task RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
-            => RequestWithTimeoutAsync(timeout, $"crate/{crateUuid}/restart", cancellationToken);
+        public Task<OperationEntity> RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+            => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/restart", cancellationToken);
 
         /// <summary>
         /// Input a command into the console for a Crate.
@@ -80,16 +80,16 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 30 seconds.</param>
-        public Task StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
-            => RequestWithTimeoutAsync(timeout, $"crate/{crateUuid}/start", cancellationToken);
+        public Task<OperationEntity> StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+            => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/start", cancellationToken);
 
         /// <summary>
         /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 30 seconds.</param>
-        public Task StopCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
-            => RequestWithTimeoutAsync(timeout, $"crate/{crateUuid}/stop", cancellationToken);
+        public Task<OperationEntity> StopCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+            => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/stop", cancellationToken);
         #endregion
 
         #region Constructors
@@ -104,12 +104,12 @@ namespace BattleCrate.API.Operations
         #endregion
 
         #region Private Methods
-        private Task RequestWithTimeoutAsync(TimeSpan timeout, string path, CancellationToken cancellationToken)
+        private Task<TResponse> RequestWithTimeoutAsync<TResponse>(TimeSpan timeout, string path, CancellationToken cancellationToken)
         {
             if (timeout.TotalSeconds < 1 || timeout.TotalSeconds > 30)
                 throw new ArgumentOutOfRangeException(nameof(timeout), "Timeout must be between 1 and 30 seconds.");
 
-            return ApiRequestor.RequestAsync(HttpMethod.Put, $"{path}?timeout={timeout.TotalSeconds}", null, cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod.Post, $"{path}?timeout={timeout.TotalSeconds}", null, cancellationToken);
         }
         #endregion
     }
