@@ -10,7 +10,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets whether the Region can have services deployed to it.
         /// </summary>
         [JsonProperty("canDeploy")]
-        public bool CanDeply { get; set; }
+        public bool CanDeploy { get; set; }
 
         /// <summary>
         /// Gets or sets the Region's display name.
