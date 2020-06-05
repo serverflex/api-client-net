@@ -7,14 +7,12 @@ namespace Example.CratePlayers
     /// <summary>
     /// An example program to get player information about a Crate.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Entry point.
         /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public async static Task Main(string[] args)
+        public async static Task Main()
         {
             // Create client.
             var apiClient = new ApiClient(Environment.GetEnvironmentVariable("API_KEY"));

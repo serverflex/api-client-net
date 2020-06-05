@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BattleCrate.API.Entities
 {
@@ -9,10 +7,28 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the UUID.
+        /// Gets or sets the time that the operation was created.
         /// </summary>
-        [JsonProperty("uuid")]
-        public Guid UUID { get; set; }
+        [JsonProperty("createdAt")]
+        public DateTimeOffset CreatedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time that the operation was completed, if any.
+        /// </summary>
+        [JsonProperty("completedAt")]
+        public DateTimeOffset? CompletedAt { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the operation is completed.
+        /// </summary>
+        [JsonProperty("isCompleted")]
+        public bool IsCompleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the operation completed succesfully.
+        /// </summary>
+        [JsonProperty("isCompletedSuccesfully")]
+        public bool IsCompletedSuccesfully { get; set; }
 
         /// <summary>
         /// Gets or sets the operation type.
@@ -21,28 +37,10 @@ namespace BattleCrate.API.Entities
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets if this operation is completed.
+        /// Gets or sets the operation UUID.
         /// </summary>
-        [JsonProperty("isCompleted")]
-        public bool IsCompleted { get; set; }
-
-        /// <summary>
-        /// Gets or sets if this operation completed succesfully.
-        /// </summary>
-        [JsonProperty("isCompletedSuccesfully")]
-        public bool IsCompletedSuccesfully { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created at time.
-        /// </summary>
-        [JsonProperty("createdAt")]
-        public DateTimeOffset CreatedAt { get; set; }
-
-        /// <summary>
-        /// Gets or sets the completed at time.
-        /// </summary>
-        [JsonProperty("completedAt")]
-        public DateTimeOffset? CompletedAt { get; set; }
+        [JsonProperty("uuid")]
+        public Guid UUID { get; set; }
         #endregion
     }
 }
