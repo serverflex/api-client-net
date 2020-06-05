@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BattleCrate.API.Entities
 {
@@ -21,7 +22,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the URL of the flag associated with the Region.
         /// </summary>
         [JsonProperty("flagUrl")]
-        public string FlagUrl { get; set; }
+        public Dictionary<int, string> FlagUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the Region's unique name.

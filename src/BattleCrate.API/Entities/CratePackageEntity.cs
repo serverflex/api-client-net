@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BattleCrate.API.Entities
 {
@@ -9,7 +10,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the URL of the background associated with the Crate Package.
         /// </summary>
         [JsonProperty("backgroundUrl")]
-        public string BackgroundUrl { get; set; }
+        public Dictionary<int, string> BackgroundUrl { get; set; }
 
         /// <summary>
         /// Gets or sets whether the Crate Package can have services deployed to it.
@@ -27,7 +28,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the URL of the icon associated with the Crate Package.
         /// </summary>
         [JsonProperty("iconUrl")]
-        public string IconUrl { get; set; }
+        public Dictionary<int, string> IconUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate Package's unique name.
