@@ -18,18 +18,6 @@ namespace BattleCrate.API.Entities
         public bool CanUse { get; set; }
 
         /// <summary>
-        /// Gets or sets the Plan's hourly cost.
-        /// </summary>
-        [JsonProperty("costHour")]
-        public float CostPerHour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Plan's monthly cost.
-        /// </summary>
-        [JsonProperty("costMonthly")]
-        public float CostPerMonth { get; set; }
-
-        /// <summary>
         /// Gets or sets the number of vCPUs provided by the Plan.
         /// </summary>
         [JsonProperty("cpuCount")]
@@ -40,12 +28,6 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("packageName")]
         public string CratePackageName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Plan's currency in ISO 4217 format.
-        /// </summary>
-        [JsonProperty("currency")]
-        public string Currency { get; set; }
 
         /// <summary>
         /// Gets or sets the Plan's display name.
@@ -64,6 +46,12 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pricing for the Plan. The array contains all available currencies. Depending on where the Plan was requested, pricing may not be included.
+        /// </summary>
+        [JsonProperty("pricing")]
+        public PricingEntity[] Pricing { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Profile that this Plan can be deployed to, if specific. Otherwise, null.

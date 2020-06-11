@@ -32,7 +32,7 @@ namespace Example.CLI
             var profile = minecraftPackage.Profiles.OrderByDescending(x => x.Name).First();
 
             // Get the lowest tier plan.
-            var plan = minecraftPackage.Plans.OrderBy(x => x.CostPerHour).First();
+            var plan = minecraftPackage.Plans.OrderBy(x => x.Pricing.Sum(p => p.CostMonthly)).First();
 
             // Select a region to deploy to.
             var region = minecraftPackage.Regions.First();
