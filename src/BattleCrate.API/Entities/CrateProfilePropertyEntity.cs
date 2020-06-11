@@ -18,18 +18,6 @@ namespace BattleCrate.API.Entities
         public object Default { get; set; }
 
         /// <summary>
-        /// Gets or sets a brief description of the property.
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the display name for the property.
-        /// </summary>
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        /// <summary>
         /// Gets or sets the unique name of the property.
         /// </summary>
         [JsonProperty("name")]
