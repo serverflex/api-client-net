@@ -9,6 +9,7 @@ namespace BattleCrate.API
         private ICrateOperations _crateOperations;
         private ICratePackageOperations _cratePackageOperations;
         private IRegionOperations _regionOperations;
+        private IUserOperations _userOperations;
         #endregion
 
         #region Properties
@@ -26,6 +27,11 @@ namespace BattleCrate.API
         /// Gets the API operations for Regions.
         /// </summary>
         public virtual IRegionOperations Regions => _regionOperations;
+
+        /// <summary>
+        /// Gets the API operations for users.
+        /// </summary>
+        public virtual IUserOperations Users => _userOperations;
         #endregion
 
         #region Constructors
@@ -68,6 +74,7 @@ namespace BattleCrate.API
             _crateOperations = new CrateOperations(this);
             _cratePackageOperations = new CratePackageOperations(this);
             _regionOperations = new RegionOperations(this);
+            _userOperations = new UserOperations(this);
         }
         #endregion
     }
