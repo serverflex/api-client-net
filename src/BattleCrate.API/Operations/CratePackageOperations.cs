@@ -24,7 +24,7 @@ namespace BattleCrate.API.Operations
             => ApiRequestor.RequestJsonSerializedAsync<CrateProfileEntity>(HttpMethod.Get, $"crate_package/{cratePackageName}/profile/{crateProfileName}", cancellationToken);
 
         /// <summary>
-        /// Get all available Crate Packages. Crate Packages will be returned with a maximum of 3 Plans, 3 Profiles and 3 Regions. To get a full list of Plans, Profiles and Regions, use <see cref="GetCratePackageAsync" />.
+        /// Get all available Crate Packages.
         /// </summary>
         public Task<CratePackageEntity[]> ListAllCratePackagesAsync(CancellationToken cancellationToken = default)
             => ApiRequestor.RequestEntireListJsonSerializedAsync<CratePackageEntity>("crate_package", cancellationToken);
@@ -45,7 +45,7 @@ namespace BattleCrate.API.Operations
             => ApiRequestor.RequestJsonSerializedAsync<CrateProfilePropertyEntity[]>(HttpMethod.Get, $"crate_package/{cratePackageName}/profile/{crateProfileName}/properties", cancellationToken);
 
         /// <summary>
-        /// Get a page of Crate Packages. Crate Packages will be returned with a maximum of 3 Plans, 3 Profiles and 3 Regions. To get a full list of Plans, Profiles and Regions, use <see cref="GetCratePackageAsync" />.
+        /// Get a page of Crate Packages.
         /// </summary>
         /// <param name="limit">The maximum number of Crate Packages that can be returned.</param>
         /// <param name="page">The cursor for the next batch of results.</param>
