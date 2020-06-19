@@ -21,7 +21,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the number of vCPUs provided by the Plan.
         /// </summary>
         [JsonProperty("cpuCount")]
-        public float CpuCount { get; set; }
+        public double CpuCount { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Crate Package that the Plan belongs to.

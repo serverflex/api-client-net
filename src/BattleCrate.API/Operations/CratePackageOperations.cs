@@ -13,7 +13,7 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="cratePackageName">The name of the Crate Package.</param>
         public Task<CratePackageEntity> GetCratePackageAsync(string cratePackageName, CancellationToken cancellationToken = default)
-            => ApiRequestor.RequestJsonSerializedAsync<CratePackageEntity>(HttpMethod.Get, $"package/{cratePackageName}", cancellationToken);
+            => ApiRequestor.RequestJsonSerializedAsync<CratePackageEntity>(HttpMethod.Get, $"crate_package/{cratePackageName}", cancellationToken);
 
         /// <summary>
         /// Get a Crate Profile.
