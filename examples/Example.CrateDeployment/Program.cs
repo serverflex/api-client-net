@@ -1,6 +1,7 @@
 ﻿using BattleCrate.API;
 using BattleCrate.API.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,8 +17,14 @@ namespace Example.CLI
         /// </summary>
         public static async Task Main()
         {
+            int deployCrates = 25;
+
             // Create BattleCrate API client.
             var apiClient = new ApiClient(Environment.GetEnvironmentVariable("API_KEY"));
+
+            UserEntity account = await apiClient.Users.GetAccountAsync().ConfigureAwait(false);
+
+            Console.WriteLine($"Hello {account.GivenName}, we are going to deploy {deployCrates} Crates.");
 
             // Find package to deploy.
             var allPackages = await apiClient.CratePackages.ListAllCratePackagesAsync().ConfigureAwait(false);
@@ -38,16 +45,23 @@ namespace Example.CLI
             var region = minecraftPackage.Regions.First();
 
             // Run deployment.
-            var newCrate = await apiClient.Crates.DeployCrateAsync(new CrateDeployEntity
+            for(int i = 0; i < deployCrates; i++)
             {
-                Name = "Sample Crate",
-                PlanName = plan.Name,
-                ProfileName = profile.Name,
-                RegionName = region.Name
+                var newCrate = await apiClient.Crates.DeployCrateAsync(new CrateDeployEntity
+                {
+                    Name = $"Sample Crate {i}",
+                    PlanName = plan.Name,
+                    ProfileName = profile.Name,
+                    RegionName = region.Name,
+                    Properties = new Dictionary<string, object>
+                    {
+                        { "eula", true },
+                        { "version", "1.15.2" }
+                    }
+                }).ConfigureAwait(false);
 
-            }).ConfigureAwait(false);
-
-            Console.WriteLine($"Your new Crate: \"{newCrate.Name}\" has been deployed!");
+                Console.WriteLine($"Your new Crate: \"{newCrate.Name}\" has been created!");
+            }
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
