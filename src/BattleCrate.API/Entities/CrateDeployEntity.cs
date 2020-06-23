@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BattleCrate.API.Entities
 {
@@ -22,6 +23,12 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("profile")]
         public string ProfileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets any properties required to deploy the Crate.
+        /// </summary>
+        [JsonProperty("properties")]
+        public IDictionary<string, object> Properties { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Region where the Crate should be deployed.
