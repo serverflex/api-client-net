@@ -55,6 +55,12 @@ namespace BattleCrate.API.Operations
         /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to restart.</param>
+        Task<OperationEntity> RestartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete.</param>
         Task<OperationEntity> RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
@@ -69,8 +75,20 @@ namespace BattleCrate.API.Operations
         /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to start.</param>
+        Task<OperationEntity> StartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to start.</param>
         /// <param name="timeout">The timeout to wait for the call to complete.</param>
         Task<OperationEntity> StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        Task<OperationEntity> StopCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
