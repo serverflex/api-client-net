@@ -61,7 +61,7 @@ namespace BattleCrate.API.Operations
         /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to restart.</param>
-        /// <param name="timeout">The timeout to wait for the call to complete.</param>
+        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         Task<OperationEntity> RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace BattleCrate.API.Operations
         /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to start.</param>
-        /// <param name="timeout">The timeout to wait for the call to complete.</param>
+        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         Task<OperationEntity> StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace BattleCrate.API.Operations
         /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
-        /// <param name="timeout">The timeout to wait for the call to complete.</param>
+        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         Task<OperationEntity> StopCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
         #endregion
     }

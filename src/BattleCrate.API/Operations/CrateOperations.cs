@@ -64,13 +64,13 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         public Task<OperationEntity> RestartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default)
-            => RestartCrateAsync(crateUuid, TimeSpan.FromSeconds(30), cancellationToken);
+            => RestartCrateAsync(crateUuid, TimeSpan.FromMinutes(2), cancellationToken);
 
         /// <summary>
         /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
-        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 30 seconds.</param>
+        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         public Task<OperationEntity> RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/restart", cancellationToken);
 
@@ -87,13 +87,13 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         public Task<OperationEntity> StartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default)
-            => StartCrateAsync(crateUuid, TimeSpan.FromSeconds(30), cancellationToken);
+            => StartCrateAsync(crateUuid, TimeSpan.FromMinutes(2), cancellationToken);
 
         /// <summary>
         /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
-        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 30 seconds.</param>
+        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         public Task<OperationEntity> StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/start", cancellationToken);
 
@@ -102,13 +102,13 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         public Task<OperationEntity> StopCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default)
-            => StopCrateAsync(crateUuid, TimeSpan.FromSeconds(30), cancellationToken);
+            => StopCrateAsync(crateUuid, TimeSpan.FromMinutes(2), cancellationToken);
 
         /// <summary>
         /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
-        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 30 seconds.</param>
+        /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         public Task<OperationEntity> StopCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/stop", cancellationToken);
         #endregion
@@ -127,8 +127,8 @@ namespace BattleCrate.API.Operations
         #region Private Methods
         private Task<TResponse> RequestWithTimeoutAsync<TResponse>(TimeSpan timeout, string path, CancellationToken cancellationToken)
         {
-            if (timeout.TotalSeconds < 1 || timeout.TotalSeconds > 30)
-                throw new ArgumentOutOfRangeException(nameof(timeout), "Timeout must be between 1 and 30 seconds.");
+            if (timeout.TotalSeconds < 1 || timeout.TotalMinutes > 2)
+                throw new ArgumentOutOfRangeException(nameof(timeout), "Timeout must be between 1 second and 2 minutes.");
 
             return ApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod.Post, $"{path}?timeout={timeout.TotalSeconds}", null, cancellationToken);
         }
