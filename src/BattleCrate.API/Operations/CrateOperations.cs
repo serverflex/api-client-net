@@ -62,14 +62,14 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
         public Task<OperationEntity> RestartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default)
             => RestartCrateAsync(crateUuid, TimeSpan.FromMinutes(2), cancellationToken);
 
         /// <summary>
         /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         public Task<OperationEntity> RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/restart", cancellationToken);
@@ -85,14 +85,14 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        /// <param name="crateUuid">The UUID of the Crate to start.</param>
         public Task<OperationEntity> StartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default)
             => StartCrateAsync(crateUuid, TimeSpan.FromMinutes(2), cancellationToken);
 
         /// <summary>
         /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        /// <param name="crateUuid">The UUID of the Crate to start.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         public Task<OperationEntity> StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             => RequestWithTimeoutAsync<OperationEntity>(timeout, $"crate/{crateUuid}/start", cancellationToken);
