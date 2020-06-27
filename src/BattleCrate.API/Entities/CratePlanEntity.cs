@@ -8,7 +8,7 @@ namespace BattleCrate.API.Entities
         /// <summary>
         /// Gets or sets the amount of backup-allocated-storage (in MB) provided by the Plan.
         /// </summary>
-        [JsonProperty("backupsInMb")]
+        [JsonProperty("backupsInMB")]
         public int BackupStorage { get; set; }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace BattleCrate.API.Entities
         /// <summary>
         /// Gets or sets the amount of memory (in MB) provided by the Plan.
         /// </summary>
-        [JsonProperty("memoryInMb")]
+        [JsonProperty("memoryInMB")]
         public int Memory { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace BattleCrate.API.Entities
         /// <summary>
         /// Gets or sets the amount of storage (in MB) provided by the Plan.
         /// </summary>
-        [JsonProperty("storageInMb")]
+        [JsonProperty("storageInMB")]
         public int Storage { get; set; }
         #endregion
     }
