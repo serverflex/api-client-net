@@ -9,7 +9,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the accepted values for the property, if any.
         /// </summary>
         [JsonProperty("acceptedValues")]
-        public object[] AcceptedValues { get; set; }
+        public CrateProfilePropertyValueEntity[] AcceptedValues { get; set; }
 
         /// <summary>
         /// Gets or sets the default value for the property, if any.
