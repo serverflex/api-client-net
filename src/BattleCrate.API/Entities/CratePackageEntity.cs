@@ -70,7 +70,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the total number of Regions this Crate Package can be deployed to.
         /// </summary>
         [JsonProperty("totalRegionCount")]
-        public int? TotalRegionCount { get; set; }
+        public int TotalRegionCount { get; set; }
         #endregion
     }
 }
