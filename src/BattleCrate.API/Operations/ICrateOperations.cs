@@ -22,6 +22,13 @@ namespace BattleCrate.API.Operations
         Task DeleteCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Delete a user from the sharing of a Crate.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to remove the user from.</param>
+        /// <param name="userUuid">The UUID of the user to remove.</param>
+        Task DeleteCrateUserSharingAsync(Guid crateUuid, Guid userUuid, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Deploy a new Crate to your account.
         /// </summary>
         /// <param name="configuration">The configuration for the new Crate.</param>

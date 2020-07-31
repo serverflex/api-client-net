@@ -25,6 +25,14 @@ namespace BattleCrate.API.Operations
             => ApiRequestor.RequestAsync(HttpMethod.Delete, $"crate/{crateUuid}", null, cancellationToken);
 
         /// <summary>
+        /// Delete a user from the sharing of a Crate.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to remove the user from.</param>
+        /// <param name="userUuid">The UUID of the user to remove.</param>
+        public Task DeleteCrateUserSharingAsync(Guid crateUuid, Guid userUuid, CancellationToken cancellationToken = default)
+            => ApiRequestor.RequestAsync(HttpMethod.Delete, $"crate/{crateUuid}/sharing/{userUuid}", null, cancellationToken);
+
+        /// <summary>
         /// Deploy a new Crate to your account.
         /// </summary>
         /// <param name="configuration">The configuration for the new Crate.</param>
