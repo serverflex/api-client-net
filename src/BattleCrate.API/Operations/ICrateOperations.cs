@@ -52,6 +52,12 @@ namespace BattleCrate.API.Operations
         Task<CrateEntity[]> ListAllCratesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Get the user sharing for a Crate.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to get sharing for.</param>
+        Task<UserSharingEntity[]> ListAllCrateUserSharingAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Get a page of Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
         /// </summary>
         /// <param name="limit">The maximum number of Crates that can be returned. Minimum: 1, maximum: 50.</param>
