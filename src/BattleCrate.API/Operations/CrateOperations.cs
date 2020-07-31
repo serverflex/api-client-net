@@ -10,6 +10,14 @@ namespace BattleCrate.API.Operations
     {
         #region Public Methods
         /// <summary>
+        /// Shares a Crate with another user.
+        /// </summary>
+        /// <param name="crateUuid">The UUID of the Crate to add the user to.</param>
+        /// <param name="newUser">The new user configuration.</param>
+        public Task<UserSharingEntity> AddCrateUserSharingAsync(Guid crateUuid, UserSharingNewEntity newUser, CancellationToken cancellationToken = default)
+            => ApiRequestor.RequestJsonSerializedAsync<UserSharingNewEntity, UserSharingEntity>(HttpMethod.Put, $"crate/{crateUuid}/sharing", newUser, cancellationToken);
+
+        /// <summary>
         /// Delete a Crate from your account.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to delete.</param>

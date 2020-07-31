@@ -3,21 +3,9 @@ using System;
 
 namespace BattleCrate.API.Entities
 {
-    public class UserEntity
+    public class UserBasicEntity
     {
         #region Properties
-        /// <summary>
-        /// Gets or sets the country code.
-        /// </summary>
-        [JsonProperty("country")]
-        public string Country { get; set; }
-
-        /// <summary>
-        /// Gets or sets the created at time.
-        /// </summary>
-        [JsonProperty("createdAt")]
-        public DateTimeOffset CreatedAt { get; set; }
-
         /// <summary>
         /// Gets or sets the email address.
         /// </summary>
@@ -29,12 +17,6 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("givenName")]
         public string GivenName { get; set; }
-
-        /// <summary>
-        /// Gets or sets a family name.
-        /// </summary>
-        [JsonProperty("familyName")]
-        public string FamilyName { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
