@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace BattleCrate.API.Operations
 {
-    public class UserOperations : BaseOperations, IUserOperations
+    public class AccountOperations : BaseOperations, IAccountOperations
     {
         #region Public Methods
         /// <summary>
         /// Gets basic information about your account.
         /// </summary>
-        public Task<UserEntity> GetAccountAsync(CancellationToken cancellationToken = default)
+        public Task<UserEntity> GetUserAsync(CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<UserEntity>(HttpMethod.Get, "account", cancellationToken);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace BattleCrate.API.Operations
         /// Creates a new set of API operations for users.
         /// </summary>
         /// <param name="apiRequestor">The API requestor to use for communicating with the API.</param>
-        public UserOperations(IApiRequestor apiRequestor)
+        public AccountOperations(IApiRequestor apiRequestor)
             : base(apiRequestor)
         {
         }

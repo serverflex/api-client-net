@@ -22,7 +22,7 @@ namespace Example.CLI
             // Create BattleCrate API client.
             var apiClient = new ApiClient(Environment.GetEnvironmentVariable("API_KEY"));
 
-            UserEntity account = await apiClient.Users.GetAccountAsync().ConfigureAwait(false);
+            UserEntity account = await apiClient.Accounts.GetUserAsync().ConfigureAwait(false);
 
             Console.WriteLine($"Hello {account.GivenName}, we are going to deploy {deployCrates} Crates.");
 

@@ -6,10 +6,10 @@ namespace BattleCrate.API
     public class ApiClient : BaseApiClient, IApiClient
     {
         #region Fields
+        private IAccountOperations _accountOperations;
         private ICrateOperations _crateOperations;
         private ICratePackageOperations _cratePackageOperations;
         private IRegionOperations _regionOperations;
-        private IUserOperations _userOperations;
         #endregion
 
         #region Properties
@@ -29,9 +29,9 @@ namespace BattleCrate.API
         public virtual IRegionOperations Regions => _regionOperations;
 
         /// <summary>
-        /// Gets the API operations for users.
+        /// Gets the API operations for accounts.
         /// </summary>
-        public virtual IUserOperations Users => _userOperations;
+        public virtual IAccountOperations Accounts => _accountOperations;
         #endregion
 
         #region Constructors
@@ -71,10 +71,10 @@ namespace BattleCrate.API
         #region Private Methods
         private void Initialize()
         {
+            _accountOperations = new AccountOperations(this);
             _crateOperations = new CrateOperations(this);
             _cratePackageOperations = new CratePackageOperations(this);
             _regionOperations = new RegionOperations(this);
-            _userOperations = new UserOperations(this);
         }
         #endregion
     }

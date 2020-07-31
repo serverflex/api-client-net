@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 
 namespace BattleCrate.API.Operations
 {
-    public interface IUserOperations
+    public interface IAccountOperations
     {
         #region Public Methods
         /// <summary>
         /// Gets basic information about your account.
         /// </summary>
-        Task<UserEntity> GetAccountAsync(CancellationToken cancellationToken = default);
+        Task<UserEntity> GetUserAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets your account balance in all supported currencies.

@@ -6,6 +6,11 @@ namespace BattleCrate.API
     {
         #region Properties
         /// <summary>
+        /// Gets the API operations for accounts.
+        /// </summary>
+        IAccountOperations Accounts { get; }
+
+        /// <summary>
         /// Gets the API operations for Crates.
         /// </summary>
         ICrateOperations Crates { get; }
@@ -19,11 +24,6 @@ namespace BattleCrate.API
         /// Gets the API operations for Regions.
         /// </summary>
         IRegionOperations Regions { get; }
-
-        /// <summary>
-        /// Gets the API operations for users.
-        /// </summary>
-        IUserOperations Users { get; }
         #endregion
     }
 }
