@@ -9,7 +9,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets the number of players currently connected to the Crate.
         /// </summary>
         [JsonProperty("online")]
-        public int OnlineCount { get; set; }
+        public int Online { get; set; }
 
         /// <summary>
         /// Gets or sets the total number of slots.

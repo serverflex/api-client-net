@@ -2,14 +2,14 @@
 
 namespace BattleCrate.API.Entities
 {
-    public class CrateCommandEntity
+    public class CrateConsoleInputEntity
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the command to input into the Crate's console.
+        /// Gets  or sets the input for the console.
         /// </summary>
         [JsonProperty("input")]
-        public string Command { get; set; }
+        public string Input { get; set; }
         #endregion
     }
 }

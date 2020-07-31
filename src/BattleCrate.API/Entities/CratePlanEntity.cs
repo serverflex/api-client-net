@@ -24,12 +24,6 @@ namespace BattleCrate.API.Entities
         public double CpuCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the Crate Package that the Plan belongs to.
-        /// </summary>
-        [JsonProperty("packageName")]
-        public string CratePackageName { get; set; }
-
-        /// <summary>
         /// Gets or sets the Plan's display name.
         /// </summary>
         [JsonProperty("displayName")]
@@ -46,6 +40,12 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the Crate Package that the Plan belongs to.
+        /// </summary>
+        [JsonProperty("packageName")]
+        public string PackageName { get; set; }
 
         /// <summary>
         /// Gets or sets the pricing for the Plan. The array contains all available currencies. Depending on where the Plan was requested, pricing may not be included.

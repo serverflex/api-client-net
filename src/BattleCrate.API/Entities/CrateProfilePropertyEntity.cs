@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BattleCrate.API.Entities
 {
@@ -28,6 +29,12 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("required")]
         public bool Required { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value groups.
+        /// </summary>
+        [JsonProperty("valueGroups")]
+        public Dictionary<string, string> ValueGroups { get; set; }
 
         /// <summary>
         /// Gets or sets the type of field that is required. See <see cref="Schema.ValueType" />.

@@ -28,7 +28,7 @@ namespace BattleCrate.API.Entities
         /// Gets or sets any properties required to deploy the Crate.
         /// </summary>
         [JsonProperty("properties")]
-        public IDictionary<string, object> Properties { get; set; }
+        public Dictionary<string, object> Properties { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Region where the Crate should be deployed.

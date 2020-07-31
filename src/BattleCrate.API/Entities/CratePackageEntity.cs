@@ -7,70 +7,70 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the URL of the background associated with the Crate Package.
+        /// Gets or sets the URLs for this Crate Package's background.
         /// </summary>
         [JsonProperty("backgroundUrl")]
         public Dictionary<int, string> BackgroundUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets whether the Crate Package can have services deployed to it.
+        /// Gets or sets if this Crate Package can be deployed.
         /// </summary>
         [JsonProperty("canDeploy")]
         public bool CanDeploy { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Package's display name.
+        /// Gets or sets the display name.
         /// </summary>
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the URL of the icon associated with the Crate Package.
+        /// Gets or sets URls for this Crate Package's icon.
         /// </summary>
         [JsonProperty("iconUrl")]
         public Dictionary<int, string> IconUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Package's unique name.
+        /// Gets or sets the name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Package's Plans.
+        /// Gets or sets the plans.
         /// </summary>
         [JsonProperty("plans")]
         public CratePlanEntity[] Plans { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Package's Profiles.
+        /// Gets or sets the Crate Profiles.
         /// </summary>
         [JsonProperty("profiles")]
         public CrateProfileEntity[] Profiles { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Package's Regions.
+        /// Gets or sets a list of Regions this Crate Package can be deployed to.
         /// </summary>
         [JsonProperty("regions")]
         public RegionEntity[] Regions { get; set; }
 
         /// <summary>
-        /// Gets or sets the total number of Plans available for the Crate Package.
+        /// Gets or sets the number of Crate Plans available for this Crate Package.
         /// </summary>
         [JsonProperty("totalPlanCount")]
         public int TotalPlanCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the total number of Profiles available for the Crate Package.
+        /// Gets or sets the number of Crate Profiles available for this Crate Package.
         /// </summary>
         [JsonProperty("totalProfileCount")]
         public int TotalProfileCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the total number of Regions available for the Crate Package.
+        /// Gets or sets the total number of Regions this Crate Package can be deployed to.
         /// </summary>
         [JsonProperty("totalRegionCount")]
-        public int TotalRegionCount { get; set; }
+        public int? TotalRegionCount { get; set; }
         #endregion
     }
 }

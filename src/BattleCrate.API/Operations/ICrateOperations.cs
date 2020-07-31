@@ -97,7 +97,7 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to send the command to.</param>
         /// <param name="command">The command to enter into the Crate's console.</param>
-        Task SendCommandAsync(Guid crateUuid, CrateCommandEntity command, CancellationToken cancellationToken = default);
+        Task SendCommandAsync(Guid crateUuid, CrateConsoleInputEntity command, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.

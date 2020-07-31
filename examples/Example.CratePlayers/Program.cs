@@ -24,7 +24,7 @@ namespace Example.CratePlayers
             {
                 var players = await apiClient.Crates.GetPlayersAsync(crate.UUID).ConfigureAwait(false);
 
-                Console.WriteLine($"{crate.Name} (created at {crate.CreatedAt:HH:mm, dd-MM-yyyy}) currently has {players.OnlineCount} players online.");
+                Console.WriteLine($"{crate.Name} (created at {crate.CreatedAt:HH:mm, dd-MM-yyyy}) currently has {players.Online} players online.");
             }
         }
     }
