@@ -54,9 +54,9 @@ namespace BattleCrate.API.Operations
         /// <param name="userUuid">The UUID of the user to update the settings for.</param>
         /// <param name="changes">The changes to make.</param>
         public Task<UserSharingEntity> EditCrateUserSharingAsync(Guid crateUuid, Guid userUuid, UserSharingEditEntity changes, CancellationToken cancellationToken = default)
-            => ApiRequestor.RequestJsonSerializedAsync<UserSharingEditEntity, UserSharingEntity>(HttpMethod.Put, $"crate/{crateUuid}/sharing/{userUuid}", changes, cancellationToken);
+            => ApiRequestor.RequestJsonSerializedAsync<UserSharingEditEntity, UserSharingEntity>(HttpMethod.Post, $"crate/{crateUuid}/sharing/{userUuid}", changes, cancellationToken);
 
-        /// <summary>
+        /// <summary
         /// Get a Crate from your account.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to retrieve.</param>
