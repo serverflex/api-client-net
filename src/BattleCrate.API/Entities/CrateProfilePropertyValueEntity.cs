@@ -6,7 +6,7 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the value as a displayable string.
+        /// Gets or sets the value as a human-readable, displayable string.
         /// </summary>
         [JsonProperty("display")]
         public string Display { get; set; }

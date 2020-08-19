@@ -9,13 +9,13 @@ namespace BattleCrate.API.Operations
     {
         #region Public Methods
         /// <summary>
-        /// Gets basic information about your account.
+        /// Get the current user.
         /// </summary>
         public Task<UserEntity> GetUserAsync(CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<UserEntity>(HttpMethod.Get, "account", cancellationToken);
 
         /// <summary>
-        /// Gets your account balance in all supported currencies.
+        /// Get the balance for the current user, in all supported currencies.
         /// </summary>
         public Task<BalanceEntity[]> GetBalanceAsync(CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<BalanceEntity[]>(HttpMethod.Get, "account/balance", cancellationToken);

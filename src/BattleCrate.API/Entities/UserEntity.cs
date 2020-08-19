@@ -13,37 +13,37 @@ namespace BattleCrate.API.Entities
         public string Country { get; set; }
 
         /// <summary>
-        /// Gets or sets the created at time.
+        /// Gets or sets when the user was created.
         /// </summary>
         [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the email address.
+        /// Gets or sets the user's email address.
         /// </summary>
         [JsonProperty("emailAddress")]
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets the give name.
+        /// Gets or sets the user's given (first) name.
         /// </summary>
         [JsonProperty("givenName")]
         public string GivenName { get; set; }
 
         /// <summary>
-        /// Gets or sets a family name.
+        /// Gets or sets the user's family (last) name(s).
         /// </summary>
         [JsonProperty("familyName")]
         public string FamilyName { get; set; }
 
         /// <summary>
-        /// Gets or sets the username.
+        /// Gets or sets the user's username.
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// Gets or sets the UUID.
+        /// Gets or sets the user's UUID.
         /// </summary>
         [JsonProperty("uuid")]
         public Guid UUID { get; set; }

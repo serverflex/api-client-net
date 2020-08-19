@@ -50,9 +50,9 @@ namespace BattleCrate.API.Operations
         Task<UserSharingEntity> EditCrateUserSharingAsync(Guid crateUuid, Guid userUuid, UserSharingEditEntity changes, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a Crate from your account.
+        /// Get a Crate.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to retrieve.</param>
+        /// <param name="crateUuid">The UUID of the Crate.</param>
         Task<CrateEntity> GetCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -80,46 +80,46 @@ namespace BattleCrate.API.Operations
         Task<ResultResponseEntity<CrateEntity>> ListCratesAsync(int limit = 25, int page = 1, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// Restart a Crate. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to restart.</param>
         Task<OperationEntity> RestartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Restart a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// Restart a Crate. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         Task<OperationEntity> RestartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Input a command into the console for a Crate.
+        /// Input a command into the console of a Crate.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to send the command to.</param>
         /// <param name="command">The command to enter into the Crate's console.</param>
         Task SendCommandAsync(Guid crateUuid, CrateConsoleInputEntity command, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// Start a Crate. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to start.</param>
         Task<OperationEntity> StartCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Start a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// Start a Crate. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to start.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
         Task<OperationEntity> StartCrateAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// Stop a Crate. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         Task<OperationEntity> StopCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Stop a Crate from your account. This process is asynchronous so the Crate may not be available immediately.
+        /// Stop a Crate. This process is asynchronous so the Crate may not be available immediately.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to stop.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>

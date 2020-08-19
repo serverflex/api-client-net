@@ -14,6 +14,11 @@ namespace BattleCrate.API
 
         #region Properties
         /// <summary>
+        /// Gets the API operations for accounts.
+        /// </summary>
+        public virtual IAccountOperations Accounts => _accountOperations;
+
+        /// <summary>
         /// Gets the API operations for Crates.
         /// </summary>
         public virtual ICrateOperations Crates => _crateOperations;
@@ -27,11 +32,6 @@ namespace BattleCrate.API
         /// Gets the API operations for Regions.
         /// </summary>
         public virtual IRegionOperations Regions => _regionOperations;
-
-        /// <summary>
-        /// Gets the API operations for accounts.
-        /// </summary>
-        public virtual IAccountOperations Accounts => _accountOperations;
         #endregion
 
         #region Constructors

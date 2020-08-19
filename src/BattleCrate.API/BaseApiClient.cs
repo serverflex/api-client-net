@@ -254,7 +254,7 @@ namespace BattleCrate.API
         #endregion
 
         #region Constant Values
-        public static readonly Uri DefaultBaseApiUri = new Uri("https://api.battlecrate.co.uk/1.0/");
+        public static readonly Uri DefaultBaseApiUri = new Uri("https://api.battlecrate.io/1.0/");
         #endregion
     }
 }

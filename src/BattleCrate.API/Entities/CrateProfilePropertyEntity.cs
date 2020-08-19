@@ -31,7 +31,7 @@ namespace BattleCrate.API.Entities
         public bool Required { get; set; }
 
         /// <summary>
-        /// Gets or sets the value groups.
+        /// Gets or sets the value groups, if any.
         /// </summary>
         [JsonProperty("valueGroups")]
         public Dictionary<string, string> ValueGroups { get; set; }

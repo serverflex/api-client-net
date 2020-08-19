@@ -11,7 +11,7 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get a Region.
         /// </summary>
-        /// <param name="regionName">The name of the Region to retrieve.</param>
+        /// <param name="regionName">The name of the Region.</param>
         public Task<RegionEntity> GetRegion(string regionName, CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<RegionEntity>(HttpMethod.Get, $"region/{regionName}", cancellationToken);
 
@@ -22,7 +22,7 @@ namespace BattleCrate.API.Operations
             => ApiRequestor.RequestEntireListJsonSerializedAsync<RegionEntity>("region", cancellationToken);
 
         /// <summary>
-        /// Get a page of available Regions.
+        /// Get a page of Regions.
         /// </summary>
         /// <param name="limit">The maximum number of Regions that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>

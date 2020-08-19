@@ -12,58 +12,54 @@ namespace Example.CLI
     /// </summary>
     public static class Program
     {
-        /// <summary>
-        /// Entry point.
-        /// </summary>
         public static async Task Main()
         {
-            int deployCrates = 25;
-
             // Create BattleCrate API client.
             var apiClient = new ApiClient(Environment.GetEnvironmentVariable("API_KEY"));
 
-            UserEntity account = await apiClient.Accounts.GetUserAsync().ConfigureAwait(false);
+            // Get the current user so we can say hello :)
+            var user = await apiClient.Accounts.GetUserAsync().ConfigureAwait(false);
 
-            Console.WriteLine($"Hello {account.GivenName}, we are going to deploy {deployCrates} Crates.");
+            Console.WriteLine($"Hello, {user.GivenName}! Let's deploy a Crate!");
 
-            // Find package to deploy.
-            var allPackages = await apiClient.CratePackages.ListAllCratePackagesAsync().ConfigureAwait(false);
+            // Get all available Crate Packages.
+            var allCratePackages = await apiClient.CratePackages.ListAllCratePackagesAsync().ConfigureAwait(false);
 
-            // Get "minecraft".
-            var minecraftPackage = allPackages.SingleOrDefault(x => x.Name == "minecraft");
+            // We want to deploy a Minecraft Crate.
+            var minecrateCratePackage = allCratePackages.FirstOrDefault(a => a.Name.Equals("minecraft"));
 
-            if (minecraftPackage == null)
-                throw new Exception("Minecraft could not be found!");
-
-            // Get the latest profile for this (ie get the latest version).
-            var profile = minecraftPackage.Profiles.OrderByDescending(x => x.Name).First();
-
-            // Get the lowest tier plan.
-            var plan = minecraftPackage.Plans.OrderBy(x => x.Pricing.Sum(p => p.CostMonthly)).First();
-
-            // Select a region to deploy to.
-            var region = minecraftPackage.Regions.First();
-
-            // Run deployment.
-            for(int i = 0; i < deployCrates; i++)
+            if (minecrateCratePackage == null)
             {
-                var newCrate = await apiClient.Crates.DeployCrateAsync(new CrateDeployEntity
-                {
-                    Name = $"Sample Crate {i}",
-                    PlanName = plan.Name,
-                    ProfileName = profile.Name,
-                    RegionName = region.Name,
-                    Properties = new Dictionary<string, object>
-                    {
-                        { "eula", true },
-                        { "version", "1.15.2" }
-                    }
-                }).ConfigureAwait(false);
-
-                Console.WriteLine($"Your new Crate: \"{newCrate.Name}\" has been created!");
+                Console.WriteLine("Minecraft Crate Package was not found :(");
+                return;
             }
 
-            Console.WriteLine("Press any key to exit.");
+            // Get the latest Crate Profile for the Crate Package.
+            var crateProfile = minecrateCratePackage.Profiles.OrderByDescending(p => p.Name).First();
+
+            // Get the lowest tier Crate Plan.
+            var cratePlan = minecrateCratePackage.Plans.OrderBy(p => p.Pricing.Sum(pr => pr.CostMonthly)).First();
+
+            // Select a Region to deploy the Crate to.
+            var region = minecrateCratePackage.Regions.First();
+
+            var newCrateConfiguration = new CrateDeployEntity
+            {
+                Name = $".NET API Client Sample Crate",
+                PlanName = cratePlan.Name,
+                ProfileName = crateProfile.Name,
+                RegionName = region.Name,
+                Properties = new Dictionary<string, object>
+                {
+                    ["eula"] = true,
+                    ["version"] = "1.15.2"
+                }
+            };
+
+            // Deploy the Crate.
+            var newCrate = await apiClient.Crates.DeployCrateAsync(newCrateConfiguration).ConfigureAwait(false);
+
+            Console.WriteLine($"Congratulations! Your new Crate has been deployed! Press any key to exit.");
             Console.ReadLine();
         }
     }

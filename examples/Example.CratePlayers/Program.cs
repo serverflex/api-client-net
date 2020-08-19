@@ -9,9 +9,6 @@ namespace Example.CratePlayers
     /// </summary>
     public static class Program
     {
-        /// <summary>
-        /// Entry point.
-        /// </summary>
         public async static Task Main()
         {
             // Create client.

@@ -12,7 +12,7 @@ namespace BattleCrate.API.Entities
         public double Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets the currency, in ISO 4217 format.
+        /// Gets or sets the currency code, in ISO 4217 format.
         /// </summary>
         [JsonProperty("currency")]
         public string Currency { get; set; }

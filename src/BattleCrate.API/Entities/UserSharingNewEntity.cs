@@ -12,7 +12,7 @@ namespace BattleCrate.API.Entities
         public string Permission { get; set; }
 
         /// <summary>
-        /// Gets or sets the username.
+        /// Gets or sets the user's username.
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; }

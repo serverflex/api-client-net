@@ -18,7 +18,7 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get a Crate Profile.
         /// </summary>
-        /// <param name="cratePackageName">The name of thhe Crate Package.</param>
+        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profile belongs to.</param>
         /// <param name="crateProfileName">The name of the Crate Profile.</param>
         public Task<CrateProfileEntity> GetCrateProfileAsync(string cratePackageName, string crateProfileName, CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<CrateProfileEntity>(HttpMethod.Get, $"crate_package/{cratePackageName}/profile/{crateProfileName}", cancellationToken);
@@ -32,14 +32,14 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get all available Crate Profiles.
         /// </summary>
-        /// <param name="cratePackageName">The name of thhe Crate Package.</param>
+        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profiles belong to.</param>
         public Task<CrateProfileEntity[]> ListAllCrateProfilesAsync(string cratePackageName, CancellationToken cancellationToken = default)
             => ApiRequestor.RequestEntireListJsonSerializedAsync<CrateProfileEntity>($"crate_package/{cratePackageName}/profile", cancellationToken);
 
         /// <summary>
-        /// Get a page of Crate Profile properties.
+        /// Get all Crate Profile properties.
         /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package.</param>
+        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profile belongs to.</param>
         /// <param name="crateProfileName">The name of the Crate Profile.</param>
         public Task<CrateProfilePropertyEntity[]> ListAllCrateProfilePropertiesAsync(string cratePackageName, string crateProfileName, CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<CrateProfilePropertyEntity[]>(HttpMethod.Get, $"crate_package/{cratePackageName}/profile/{crateProfileName}/properties", cancellationToken);
@@ -47,7 +47,7 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get a page of Crate Packages.
         /// </summary>
-        /// <param name="limit">The maximum number of Crate Packages that can be returned.</param>
+        /// <param name="limit">The maximum number of Crate Packages that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results.</param>
         public Task<ResultResponseEntity<CratePackageEntity>> ListCratePackagesAsync(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
             => ApiRequestor.RequestResultResponseJsonSerializedAsync<CratePackageEntity>(limit, page, "crate_package", cancellationToken);
@@ -55,7 +55,7 @@ namespace BattleCrate.API.Operations
         /// <summary>
         /// Get a page of Crate Profiles.
         /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package.</param>
+        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profiles belong to.</param>
         /// <param name="limit">The maximum number of Crate Profiles that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         public Task<ResultResponseEntity<CrateProfileEntity>> ListCrateProfilesAsync(string cratePackageName, int limit = 25, int page = 1, CancellationToken cancellationToken = default)

@@ -12,7 +12,7 @@ namespace BattleCrate.API.Entities
         public int Online { get; set; }
 
         /// <summary>
-        /// Gets or sets the total number of slots.
+        /// Gets or sets the total number of slots available on the Crate, occupied or free.
         /// </summary>
         [JsonProperty("totalSlots")]
         public int TotalSlots { get; set; }

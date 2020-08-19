@@ -7,7 +7,7 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the time created.
+        /// Gets or sets the time that the Crate was created.
         /// </summary>
         [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
@@ -19,55 +19,55 @@ namespace BattleCrate.API.Entities
         public CrateLockInfoEntity Locked { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the name of the Crate.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the network information for a Crate.
+        /// Gets or sets the network information for the Crate.
         /// </summary>
         [JsonProperty("network")]
         public NetworkInfoEntity Network { get; set; }
 
         /// <summary>
-        /// Gets or sets the package.
+        /// Gets or sets the Crate's Crate Package.
         /// </summary>
         [JsonProperty("package")]
         public CratePackageEntity Package { get; set; }
 
         /// <summary>
-        /// Gets or sets the current users permission level on this Crate.
+        /// Gets or sets the current user's permission level on this Crate.
         /// </summary>
         [JsonProperty("permission")]
         public string Permission { get; set; }
 
         /// <summary>
-        /// Gets or sets the plan.
+        /// Gets or sets the Crate's Crate Plan.
         /// </summary>
         [JsonProperty("plan")]
         public CratePlanEntity Plan { get; set; }
 
         /// <summary>
-        /// Gets or sets the profile.
+        /// Gets or sets the Crate's Crate Profile.
         /// </summary>
         [JsonProperty("profile")]
         public CrateProfileEntity Profile { get; set; }
 
         /// <summary>
-        /// Gets or sets the region.
+        /// Gets or sets the Region where the Crate is deployed.
         /// </summary>
         [JsonProperty("region")]
         public RegionEntity Region { get; set; }
 
         /// <summary>
-        /// Gets or sets the current state.
+        /// Gets or sets the Crate's current state.
         /// </summary>
         [JsonProperty("state")]
         public string State { get; set; }
 
         /// <summary>
-        /// Gets or sets the UUID.
+        /// Gets or sets the Crate's UUID.
         /// </summary>
         [JsonProperty("uuid")]
         public Guid UUID { get; set; }

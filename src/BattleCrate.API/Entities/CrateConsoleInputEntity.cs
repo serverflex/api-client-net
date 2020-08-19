@@ -6,7 +6,7 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets  or sets the input for the console.
+        /// Gets or sets the input for the console.
         /// </summary>
         [JsonProperty("input")]
         public string Input { get; set; }
