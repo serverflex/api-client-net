@@ -19,6 +19,12 @@ namespace BattleCrate.API.Operations
         /// </summary>
         public Task<BalanceEntity[]> GetBalanceAsync(CancellationToken cancellationToken = default)
             => ApiRequestor.RequestJsonSerializedAsync<BalanceEntity[]>(HttpMethod.Get, "account/balance", cancellationToken);
+
+        /// <summary>
+        /// Gets the referral overview for the current user.
+        /// </summary>
+        public Task<ReferralOverviewEntity> GetReferralOverviewAsync(CancellationToken cancellationToken = default)
+            => ApiRequestor.RequestJsonSerializedAsync<ReferralOverviewEntity>(HttpMethod.Get, "account/referral_overview", cancellationToken);
         #endregion
 
         #region Constructors

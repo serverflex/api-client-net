@@ -16,6 +16,11 @@ namespace BattleCrate.API.Operations
         /// Get the balance for the current user, in all supported currencies.
         /// </summary>
         Task<BalanceEntity[]> GetBalanceAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Gets the referral overview for the current user.
+        /// </summary>
+        Task<ReferralOverviewEntity> GetReferralOverviewAsync(CancellationToken cancellationToken = default);
         #endregion
     }
 }

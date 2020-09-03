@@ -37,6 +37,12 @@ namespace BattleCrate.API.Entities
         public string FamilyName { get; set; }
 
         /// <summary>
+        /// Gets or sets the user's referral token.
+        /// </summary>
+        [JsonProperty("referralToken")]
+        public string ReferralToken { get; set; }
+
+        /// <summary>
         /// Gets or sets the user's username.
         /// </summary>
         [JsonProperty("username")]
