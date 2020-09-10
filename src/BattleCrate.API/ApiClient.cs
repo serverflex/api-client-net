@@ -19,19 +19,33 @@ namespace BattleCrate.API
         public virtual IAccountOperations Accounts => _accountOperations;
 
         /// <summary>
-        /// Gets the API operations for Crates.
-        /// </summary>
-        public virtual ICrateOperations Crates => _crateOperations;
-
-        /// <summary>
         /// Gets the API operations for Crate Packages.
         /// </summary>
         public virtual ICratePackageOperations CratePackages => _cratePackageOperations;
 
         /// <summary>
+        /// Gets the API operations for Crates.
+        /// </summary>
+        public virtual ICrateOperations Crates => _crateOperations;
+
+        /// <summary>
         /// Gets the API operations for Regions.
         /// </summary>
         public virtual IRegionOperations Regions => _regionOperations;
+        #endregion
+
+        #region Protected Methods
+        protected virtual IAccountOperations ConstructAccountOpertaions()
+            => new AccountOperations(this);
+
+        protected virtual ICrateOperations ConstructCrateOpertaions()
+            => new CrateOperations(this);
+
+        protected virtual ICratePackageOperations ConstructCratePackageOpertaions()
+            => new CratePackageOperations(this);
+
+        protected virtual IRegionOperations ConstructRegionOpertaions()
+            => new RegionOperations(this);
         #endregion
 
         #region Constructors
@@ -71,10 +85,10 @@ namespace BattleCrate.API
         #region Private Methods
         private void Initialize()
         {
-            _accountOperations = new AccountOperations(this);
-            _crateOperations = new CrateOperations(this);
-            _cratePackageOperations = new CratePackageOperations(this);
-            _regionOperations = new RegionOperations(this);
+            _accountOperations = ConstructAccountOpertaions();
+            _crateOperations = ConstructCrateOpertaions();
+            _cratePackageOperations = ConstructCratePackageOpertaions();
+            _regionOperations = ConstructRegionOpertaions();
         }
         #endregion
     }
