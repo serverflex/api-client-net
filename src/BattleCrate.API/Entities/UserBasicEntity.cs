@@ -13,6 +13,12 @@ namespace BattleCrate.API.Entities
         public string EmailAddress { get; set; }
 
         /// <summary>
+        /// Gets or sets the user's family (last) name.
+        /// </summary>
+        [JsonProperty("familyName")]
+        public string FamilyName { get; set; }
+
+        /// <summary>
         /// Gets or sets the user's given (first) name.
         /// </summary>
         [JsonProperty("givenName")]
