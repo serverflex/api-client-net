@@ -198,24 +198,13 @@ namespace BattleCrate.API
 
         #region Constructors
         /// <summary>
-        /// Creates a new BattleCrate API client.
-        /// </summary>
-        protected BaseApiClient()
-            => Initialize(null, null, false);
-
-        /// <summary>
         /// Creates a new BattleCrate API client with an API key.
         /// </summary>
         /// <param name="apiKey">Your BattleCrate API key.</param>
         protected BaseApiClient(string apiKey)
-            => Initialize(null, apiKey, true);
-
-        /// <summary>
-        /// Creates a new BattleCrate API client with a custom base URI.
-        /// </summary>
-        /// <param name="baseApiUri">The base URI to use for the API.</param>
-        protected BaseApiClient(Uri baseApiUri)
-            => Initialize(baseApiUri, null, false);
+            : this(null, apiKey)
+        {
+        }
 
         /// <summary>
         /// Creates a new BattleCrate API client with a custom base URI and and API key.
@@ -223,11 +212,6 @@ namespace BattleCrate.API
         /// <param name="baseApiUri">The base URI to use for the API.</param>
         /// <param name="apiKey">Your BattleCrate API key.</param>
         protected BaseApiClient(Uri baseApiUri, string apiKey)
-            => Initialize(baseApiUri, apiKey, true);
-        #endregion
-
-        #region Private Methods
-        private void Initialize(Uri baseApiUri, string apiKey, bool checkForEmptyApiKey)
         {
             BaseApiUri = baseApiUri ?? DefaultBaseApiUri;
 
@@ -237,10 +221,7 @@ namespace BattleCrate.API
             };
 
             if (string.IsNullOrWhiteSpace(apiKey))
-            {
-                if (checkForEmptyApiKey)
-                    throw new ArgumentException("API key must not be null or empty.");
-            }
+                throw new ArgumentException("API key must not be null or empty.");
             else
             {
                 _apiKey = apiKey;
@@ -248,7 +229,9 @@ namespace BattleCrate.API
                 HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
             }
         }
+        #endregion
 
+        #region Private Methods
         private HttpContent SerializeContent<TContent>(TContent content)
             => new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
         #endregion

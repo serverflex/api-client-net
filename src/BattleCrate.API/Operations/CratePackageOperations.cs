@@ -1,4 +1,5 @@
 ﻿using BattleCrate.API.Entities;
+using BattleCrate.API.Operations.Base;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;

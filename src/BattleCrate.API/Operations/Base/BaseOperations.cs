@@ -1,4 +1,4 @@
-﻿namespace BattleCrate.API.Operations
+﻿namespace BattleCrate.API.Operations.Base
 {
     public abstract class BaseOperations
     {

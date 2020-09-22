@@ -108,12 +108,12 @@ namespace BattleCrate.API.Operations
             where TCratePlayersEntity : class;
 
         /// <summary>
-        /// Get all of the Crates in your account. The returned Crates are sorted by date created in acsending order (oldest Crates at the top).
+        /// Get all of the Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
         /// </summary>
         Task<CrateEntity[]> ListAllCratesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get all of the Crates in your account. The returned Crates are sorted by date created in acsending order (oldest Crates at the top).
+        /// Get all of the Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
         /// </summary>
         Task<TCrateEntity[]> ListAllCratesAsync<TCrateEntity>(CancellationToken cancellationToken = default)
             where TCrateEntity : class;

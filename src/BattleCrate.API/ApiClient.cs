@@ -6,10 +6,10 @@ namespace BattleCrate.API
     public class ApiClient : BaseApiClient, IApiClient
     {
         #region Fields
-        private IAccountOperations _accountOperations;
-        private ICrateOperations _crateOperations;
-        private ICratePackageOperations _cratePackageOperations;
-        private IRegionOperations _regionOperations;
+        private readonly IAccountOperations _accountOperations;
+        private readonly ICrateOperations _crateOperations;
+        private readonly ICratePackageOperations _cratePackageOperations;
+        private readonly IRegionOperations _regionOperations;
         #endregion
 
         #region Properties
@@ -50,27 +50,13 @@ namespace BattleCrate.API
 
         #region Constructors
         /// <summary>
-        /// Creates a new BattleCrate API client.
-        /// </summary>
-        public ApiClient()
-            : base()
-            => Initialize();
-
-        /// <summary>
         /// Creates a new BattleCrate API client with an API key.
         /// </summary>
         /// <param name="apiKey">Your BattleCrate API key.</param>
         public ApiClient(string apiKey)
-            : base(apiKey)
-            => Initialize();
-
-        /// <summary>
-        /// Creates a new BattleCrate API client with a custom base URI.
-        /// </summary>
-        /// <param name="baseApiUri">The base URI to use for the API.</param>
-        public ApiClient(Uri baseApiUri)
-            : base(baseApiUri)
-            => Initialize();
+            : this(null, apiKey)
+        {
+        }
 
         /// <summary>
         /// Creates a new BattleCrate API client with a custom base URI and an API key.
@@ -79,11 +65,6 @@ namespace BattleCrate.API
         /// <param name="apiKey">Your BattleCrate API key.</param>
         public ApiClient(Uri baseApiUri, string apiKey)
             : base(baseApiUri, apiKey)
-            => Initialize();
-        #endregion
-
-        #region Private Methods
-        private void Initialize()
         {
             _accountOperations = ConstructAccountOpertaions();
             _crateOperations = ConstructCrateOpertaions();
