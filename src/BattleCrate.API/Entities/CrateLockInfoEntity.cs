@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BattleCrate.API.Schema;
+using Newtonsoft.Json;
 
 namespace BattleCrate.API.Entities
 {
@@ -12,7 +13,7 @@ namespace BattleCrate.API.Entities
         public bool IsLocked { get; set; }
 
         /// <summary>
-        /// Gets or sets the reason why the Crate is locked, if any.
+        /// Gets or sets the reason why the Crate is locked, if any. See <see cref="LockReason" />.
         /// </summary>
         [JsonProperty("reason")]
         public string Reason { get; set; }
