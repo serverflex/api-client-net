@@ -9,32 +9,10 @@ namespace BattleCrate.API.Operations
     {
         #region Public Methods
         /// <summary>
-        /// Shares a Crate with another user.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to add the user to.</param>
-        /// <param name="newUser">The new user configuration.</param>
-        Task<UserSharingEntity> AddCrateUserSharingAsync(Guid crateUuid, UserSharingNewEntity newUser, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Shares a Crate with another user.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to add the user to.</param>
-        /// <param name="newUser">The new user configuration.</param>
-        Task<TUserSharingEntity> AddCrateUserSharingAsync<TUserSharingEntity>(Guid crateUuid, UserSharingNewEntity newUser, CancellationToken cancellationToken = default)
-            where TUserSharingEntity : class;
-
-        /// <summary>
         /// Delete a Crate from your account.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to delete.</param>
         Task DeleteCrateAsync(Guid crateUuid, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Delete a user from the sharing of a Crate.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to remove the user from.</param>
-        /// <param name="userUuid">The UUID of the user to remove.</param>
-        Task DeleteCrateUserSharingAsync(Guid crateUuid, Guid userUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deploy a new Crate to your account.
@@ -63,23 +41,6 @@ namespace BattleCrate.API.Operations
         /// <param name="changes">The changes to make to the Crate.</param>
         Task<TCrateEntity> EditCrateAsync<TCrateEntity>(Guid crateUuid, CrateEditEntity changes, CancellationToken cancellationToken = default)
             where TCrateEntity : class;
-
-        /// <summary>
-        /// Edit the Crate sharing settings for a user.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to make the changes to.</param>
-        /// <param name="userUuid">The UUID of the user to update the settings for.</param>
-        /// <param name="changes">The changes to make.</param>
-        Task<UserSharingEntity> EditCrateUserSharingAsync(Guid crateUuid, Guid userUuid, UserSharingEditEntity changes, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Edit the Crate sharing settings for a user.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to make the changes to.</param>
-        /// <param name="userUuid">The UUID of the user to update the settings for.</param>
-        /// <param name="changes">The changes to make.</param>
-        Task<TUserSharingEntity> EditCrateUserSharingAsync<TUserSharingEntity>(Guid crateUuid, Guid userUuid, UserSharingEditEntity changes, CancellationToken cancellationToken = default)
-            where TUserSharingEntity : class;
 
         /// <summary>
         /// Get a Crate.
@@ -117,19 +78,6 @@ namespace BattleCrate.API.Operations
         /// </summary>
         Task<TCrateEntity[]> ListAllCratesAsync<TCrateEntity>(CancellationToken cancellationToken = default)
             where TCrateEntity : class;
-
-        /// <summary>
-        /// Get the user sharing for a Crate.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to get sharing for.</param>
-        Task<UserSharingEntity[]> ListAllCrateUserSharingAsync(Guid crateUuid, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Get the user sharing for a Crate.
-        /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to get sharing for.</param>
-        Task<TUserSharingEntity[]> ListAllCrateUserSharingAsync<TUserSharingEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
-            where TUserSharingEntity : class;
 
         /// <summary>
         /// Get a page of Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).

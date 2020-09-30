@@ -9,6 +9,7 @@ namespace BattleCrate.API
         private readonly IAccountOperations _accountOperations;
         private readonly ICrateOperations _crateOperations;
         private readonly ICratePackageOperations _cratePackageOperations;
+        private readonly ICrateSharingOperations _crateSharingOperations;
         private readonly IRegionOperations _regionOperations;
         #endregion
 
@@ -29,6 +30,11 @@ namespace BattleCrate.API
         public virtual ICrateOperations Crates => _crateOperations;
 
         /// <summary>
+        /// Gets the API operations for Crate sharing.
+        /// </summary>
+        public virtual ICrateSharingOperations CrateSharing => _crateSharingOperations;
+
+        /// <summary>
         /// Gets the API operations for Regions.
         /// </summary>
         public virtual IRegionOperations Regions => _regionOperations;
@@ -43,6 +49,9 @@ namespace BattleCrate.API
 
         protected virtual ICratePackageOperations ConstructCratePackageOpertaions()
             => new CratePackageOperations(this);
+
+        protected virtual ICrateSharingOperations ConstructCrateSharingOperations()
+            => new CrateSharingOperations(this);
 
         protected virtual IRegionOperations ConstructRegionOpertaions()
             => new RegionOperations(this);
@@ -69,6 +78,7 @@ namespace BattleCrate.API
             _accountOperations = ConstructAccountOpertaions();
             _crateOperations = ConstructCrateOpertaions();
             _cratePackageOperations = ConstructCratePackageOpertaions();
+            _crateSharingOperations = ConstructCrateSharingOperations();
             _regionOperations = ConstructRegionOpertaions();
         }
         #endregion
