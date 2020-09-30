@@ -15,7 +15,7 @@ namespace BattleCrate.API
     public abstract class BaseApiClient : IBaseApiClient, IApiRequestor
     {
         #region Fields
-        private string _apiKey;
+        private readonly string _apiKey;
         #endregion
 
         #region Properties
