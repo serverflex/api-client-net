@@ -59,21 +59,12 @@ namespace BattleCrate.API
 
         #region Constructors
         /// <summary>
-        /// Creates a new BattleCrate API client with an API key.
+        /// Creates a new BattleCrate API client with an API key and an optional custom base URI.
         /// </summary>
         /// <param name="apiKey">Your BattleCrate API key.</param>
-        public ApiClient(string apiKey)
-            : this(null, apiKey)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new BattleCrate API client with a custom base URI and an API key.
-        /// </summary>
-        /// <param name="baseApiUri">The base URI to use for the API.</param>
-        /// <param name="apiKey">Your BattleCrate API key.</param>
-        public ApiClient(Uri baseApiUri, string apiKey)
-            : base(baseApiUri, apiKey)
+        /// <param name="baseApiUri">The base URI to use for the API, or null for default.</param>
+        public ApiClient(string apiKey, Uri baseApiUri = null)
+            : base(apiKey, baseApiUri)
         {
             _accountOperations = ConstructAccountOpertaions();
             _crateOperations = ConstructCrateOpertaions();

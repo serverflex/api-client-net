@@ -47,11 +47,12 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content, if any.</param>
-        async Task<HttpResponseMessage> IApiRequestor.RawRequestAsync(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken)
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        async Task<HttpResponseMessage> IApiRequestor.RawRequestAsync(HttpMethod method, string path, HttpContent content, bool formatBaseApiUri, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var request = new HttpRequestMessage(method, path);
+            var request = new HttpRequestMessage(method, formatBaseApiUri ? BaseApiUri + path : path);
 
             if (method != HttpMethod.Get)
                 request.Content = content;
@@ -91,8 +92,9 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content, if any.</param>
-        Task<HttpResponseMessage> IApiRequestor.RequestAsync<TRequest>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken)
-            => ((IApiRequestor)this).RequestAsync(method, path, SerializeContent(content), cancellationToken);
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        Task<HttpResponseMessage> IApiRequestor.RequestAsync<TRequest>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken, bool formatBaseApiUri)
+            => ((IApiRequestor)this).RequestAsync(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
 
         /// <summary>
         /// Sends a REST request to the API. Includes retry logic.
@@ -100,13 +102,14 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content, if any.</param>
-        async Task<HttpResponseMessage> IApiRequestor.RequestAsync(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken)
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        async Task<HttpResponseMessage> IApiRequestor.RequestAsync(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
             for (var i = 0; i < RetryCount; i++)
             {
                 try
                 {
-                    return await ((IApiRequestor)this).RawRequestAsync(method, path, content, cancellationToken).ConfigureAwait(false);
+                    return await ((IApiRequestor)this).RawRequestAsync(method, path, content, formatBaseApiUri, cancellationToken).ConfigureAwait(false);
                 }
                 catch (ApiException e)
                 {
@@ -128,7 +131,8 @@ namespace BattleCrate.API
         /// Get all available items from all pages.
         /// </summary>
         /// <param name="path">The request path without query parameters.</param>
-        async Task<TEntity[]> IApiRequestor.RequestEntireListJsonSerializedAsync<TEntity>(string path, CancellationToken cancellationToken)
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        async Task<TEntity[]> IApiRequestor.RequestEntireListJsonSerializedAsync<TEntity>(string path, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
             var page = 1;
             var totalPages = 1;
@@ -137,7 +141,7 @@ namespace BattleCrate.API
 
             while (page <= totalPages)
             {
-                var pageOfEntities = await ((IApiRequestor)this).RequestResultResponseJsonSerializedAsync<TEntity>(50, page, path, cancellationToken).ConfigureAwait(false);
+                var pageOfEntities = await ((IApiRequestor)this).RequestResultResponseJsonSerializedAsync<TEntity>(50, page, path, cancellationToken, formatBaseApiUri).ConfigureAwait(false);
 
                 entities.AddRange(pageOfEntities.Results);
 
@@ -153,8 +157,9 @@ namespace BattleCrate.API
         /// </summary>
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
-        Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, CancellationToken cancellationToken)
-            => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, null, cancellationToken);
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, CancellationToken cancellationToken, bool formatBaseApiUri)
+            => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, null, cancellationToken, formatBaseApiUri);
 
         /// <summary>
         /// Request a serialized object response with serialized content.
@@ -162,8 +167,9 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content.</param>
-        Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TRequest, TResponse>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken)
-            => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, SerializeContent(content), cancellationToken);
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TRequest, TResponse>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken, bool formatBaseApiUri)
+            => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
 
         /// <summary>
         /// Request a serialized object response with content.
@@ -171,9 +177,10 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content.</param>
-        async Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken)
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        async Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
-            var response = await ((IApiRequestor)this).RequestAsync(method, path, content, cancellationToken).ConfigureAwait(false);
+            var response = await ((IApiRequestor)this).RequestAsync(method, path, content, cancellationToken, formatBaseApiUri).ConfigureAwait(false);
 
             if (!response.Content.Headers.ContentType.MediaType.StartsWith("application/json", StringComparison.CurrentCultureIgnoreCase))
                 throw ApiException.InvalidServerResponse(response);
@@ -187,38 +194,27 @@ namespace BattleCrate.API
         /// <param name="limit">The maximum number of items that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         /// <param name="path">The request path without request parameters.</param>
-        Task<ResultResponseEntity<TEntity>> IApiRequestor.RequestResultResponseJsonSerializedAsync<TEntity>(int limit, int page, string path, CancellationToken cancellationToken)
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        Task<ResultResponseEntity<TEntity>> IApiRequestor.RequestResultResponseJsonSerializedAsync<TEntity>(int limit, int page, string path, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
             if (limit < 1 || limit > 50)
                 throw new ArgumentOutOfRangeException(nameof(limit), "The limit must be between 1 and 50.");
 
-            return ((IApiRequestor)this).RequestJsonSerializedAsync<ResultResponseEntity<TEntity>>(HttpMethod.Get, $"{path}?limit={limit}&page={page}", cancellationToken);
+            return ((IApiRequestor)this).RequestJsonSerializedAsync<ResultResponseEntity<TEntity>>(HttpMethod.Get, $"{path}?limit={limit}&page={page}", cancellationToken, formatBaseApiUri);
         }
         #endregion
 
         #region Constructors
         /// <summary>
-        /// Creates a new BattleCrate API client with an API key.
+        /// Creates a new BattleCrate API client with an API key and an optional custom base URI.
         /// </summary>
         /// <param name="apiKey">Your BattleCrate API key.</param>
-        protected BaseApiClient(string apiKey)
-            : this(null, apiKey)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new BattleCrate API client with a custom base URI and and API key.
-        /// </summary>
-        /// <param name="baseApiUri">The base URI to use for the API.</param>
-        /// <param name="apiKey">Your BattleCrate API key.</param>
-        protected BaseApiClient(Uri baseApiUri, string apiKey)
+        /// <param name="baseApiUri">The base URI to use for the API, or null for default.</param>
+        protected BaseApiClient(string apiKey, Uri baseApiUri = null)
         {
             BaseApiUri = baseApiUri ?? DefaultBaseApiUri;
 
-            HttpClient = new HttpClient
-            {
-                BaseAddress = BaseApiUri
-            };
+            HttpClient = new HttpClient();
 
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentException("API key must not be null or empty.");
