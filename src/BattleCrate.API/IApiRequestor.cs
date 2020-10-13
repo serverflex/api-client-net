@@ -1,4 +1,5 @@
 ﻿using BattleCrate.API.Entities;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,6 +8,28 @@ namespace BattleCrate.API
 {
     public interface IApiRequestor
     {
+        #region Properties
+        /// <summary>
+        /// Gets or sets the base URI to use for the API.
+        /// </summary>
+        Uri BaseApiUri { get; set; }
+
+        /// <summary>
+        /// Gets the API client's underlying HTTP client.
+        /// </summary>
+        HttpClient HttpClient { get; }
+
+        /// <summary>
+        /// Gets or sets how many times an operation should be retried for transient failures.
+        /// </summary>
+        int RetryCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets how long to wait between retrying operations.
+        /// </summary>
+        TimeSpan RetryDelay { get; set; }
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Sends a raw REST request to the API. Includes error handling logic but no retry logic.
