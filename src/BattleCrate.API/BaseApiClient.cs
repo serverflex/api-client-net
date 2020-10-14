@@ -92,7 +92,7 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content, if any.</param>
-        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<HttpResponseMessage> IApiRequestor.RequestAsync<TRequest>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken, bool formatBaseApiUri)
             => ((IApiRequestor)this).RequestAsync(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
 
@@ -102,7 +102,7 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content, if any.</param>
-        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         async Task<HttpResponseMessage> IApiRequestor.RequestAsync(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
             for (var i = 0; i < RetryCount; i++)
@@ -157,7 +157,7 @@ namespace BattleCrate.API
         /// </summary>
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
-        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, CancellationToken cancellationToken, bool formatBaseApiUri)
             => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, null, cancellationToken, formatBaseApiUri);
 
@@ -167,7 +167,7 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content.</param>
-        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TRequest, TResponse>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken, bool formatBaseApiUri)
             => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
 
@@ -177,7 +177,7 @@ namespace BattleCrate.API
         /// <param name="method">The request method.</param>
         /// <param name="path">The request path.</param>
         /// <param name="content">The request content.</param>
-        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         async Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
             var response = await ((IApiRequestor)this).RequestAsync(method, path, content, cancellationToken, formatBaseApiUri).ConfigureAwait(false);
@@ -194,7 +194,7 @@ namespace BattleCrate.API
         /// <param name="limit">The maximum number of items that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         /// <param name="path">The request path without request parameters.</param>
-        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri "/>.</param>
+        /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<ResultResponseEntity<TEntity>> IApiRequestor.RequestResultResponseJsonSerializedAsync<TEntity>(int limit, int page, string path, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
             if (limit < 1 || limit > 50)
