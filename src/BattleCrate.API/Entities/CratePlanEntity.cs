@@ -6,67 +6,97 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the amount of backup-allocated-storage (in MB) provided by this Crate Plan.
+        /// Gets or sets the amount of backup-allocated-storage (in MB) provided by the Plan.
         /// </summary>
         [JsonProperty("backupsInMB")]
         public int BackupStorage { get; set; }
 
         /// <summary>
-        /// Gets or sets whether resources can be deployed using this Crate Plan.
+        /// Gets or sets whether the Plan can currently be deployed.
         /// </summary>
         [JsonProperty("canUse")]
         public bool CanUse { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of vCPUs provided by this Crate Plan.
+        /// Gets or sets the number of vCPUs provided by the Plan.
         /// </summary>
         [JsonProperty("cpuCount")]
         public double CpuCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Plan's display name.
+        /// Gets or sets the Plan's display name.
         /// </summary>
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the amount of memory (in MB) provided by this Crate Plan.
+        /// Gets or sets the URL for the Plan's icon.
+        /// </summary>
+        [JsonProperty("iconUrl")]
+        public string IconUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the Plan is featured.
+        /// </summary>
+        [JsonProperty("isFeatured")]
+        public bool IsFeatured { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the Plan is popular.
+        /// </summary>
+        [JsonProperty("isPopular")]
+        public bool IsPopular { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the Plan is trial eligible.
+        /// </summary>
+        [JsonProperty("isTrialEligible")]
+        public bool IsTrialEligible { get; set; }
+
+        /// <summary>
+        /// Gets or sets the amount of memory (in MB) provided by the Plan.
         /// </summary>
         [JsonProperty("memoryInMB")]
         public int Memory { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate Plan's unique name.
+        /// Gets or sets the Plan's unique name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the Crate Package that this Crate Plan belongs to.
+        /// Gets or sets the name of the Crate Package that the Plan belongs to.
         /// </summary>
         [JsonProperty("packageName")]
         public string PackageName { get; set; }
 
         /// <summary>
-        /// Gets or sets the pricing for this Crate Plan. The array contains all available currencies. Depending on where the Crate Plan was requested, pricing may not be included.
+        /// Gets or sets the pricing for the Plan. The array contains all available currencies. Depending on where the Plan was requested, pricing may not be included.
         /// </summary>
         [JsonProperty("pricing")]
         public PricingEntity[] Pricing { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the Crate Profile that this Crate Plan can be deployed to, if specific. Otherwise, null.
+        /// Gets or sets the name of the Profile that this Plan can be deployed to, if specific. Otherwise, null.
         /// </summary>
         [JsonProperty("profileName")]
         public string ProfileName { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the Region that this Crate Plan can be deployed to, if specific. Otherwise, null.
+        /// Gets or sets the recommended players.
+        /// </summary>
+        [JsonProperty("recommendedPlayers")]
+        public string RecommendedPlayers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the Region that this Plan can be deployed to, if specific. Otherwise, null.
         /// </summary>
         [JsonProperty("regionName")]
         public string RegionName { get; set; }
 
         /// <summary>
-        /// Gets or sets the amount of storage (in MB) provided by this Crate Plan.
+        /// Gets or sets the amount of storage (in MB) provided by the Plan.
         /// </summary>
         [JsonProperty("storageInMB")]
         public int Storage { get; set; }

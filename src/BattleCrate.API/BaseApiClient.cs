@@ -1,24 +1,29 @@
-﻿using BattleCrate.API.Entities;
+﻿using BattleCrate.API.Authentication.Base;
+using BattleCrate.API.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace BattleCrate.API
 {
-    public abstract class BaseApiClient : IBaseApiClient, IApiRequestor
+    public abstract class BaseApiClient : IApiRequestor
     {
         #region Fields
-        private readonly string _apiKey;
+        private bool _hasReauthorized;
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Gets or sets the API authentication.
+        /// </summary>
+        public IApiAuthentication Authentication { get; set; }
+
         /// <summary>
         /// Gets or sets the base URI to use for the API.
         /// </summary>
@@ -52,7 +57,12 @@ namespace BattleCrate.API
         {
             cancellationToken.ThrowIfCancellationRequested();
 
+            if (Authentication == null)
+                throw new NullReferenceException("No authentication provided.");
+
             var request = new HttpRequestMessage(method, formatBaseApiUri ? BaseApiUri + path : path);
+
+            Authentication.ApplyToRequest(request);
 
             if (method != HttpMethod.Get)
                 request.Content = content;
@@ -105,22 +115,38 @@ namespace BattleCrate.API
         /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         async Task<HttpResponseMessage> IApiRequestor.RequestAsync(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken, bool formatBaseApiUri)
         {
+            _hasReauthorized = false;
+
             for (var i = 0; i < RetryCount; i++)
             {
                 try
                 {
-                    return await ((IApiRequestor)this).RawRequestAsync(method, path, content, formatBaseApiUri, cancellationToken).ConfigureAwait(false);
+                    var response = await ((IApiRequestor)this).RawRequestAsync(method, path, content, formatBaseApiUri, cancellationToken).ConfigureAwait(false);
+
+                    return response;
                 }
                 catch (ApiException e)
+                    when (e.StatusCode == HttpStatusCode.Unauthorized && !_hasReauthorized)
                 {
-                    if (e.StatusCode == HttpStatusCode.BadGateway && i < RetryCount - 1)
+                    var retry = await Authentication.ReauthorizeAsync(this).ConfigureAwait(false);
+
+                    if (retry)
                     {
-                        await Task.Delay(RetryDelay).ConfigureAwait(false);
+                        i--;
+
+                        _hasReauthorized = true;
 
                         continue;
                     }
+                    else
+                        throw;
+                }
+                catch (ApiException e)
+                    when (e.StatusCode == HttpStatusCode.BadGateway && i < RetryCount - 1)
+                {
+                    await Task.Delay(RetryDelay).ConfigureAwait(false);
 
-                    throw;
+                    continue;
                 }
             }
 
@@ -206,30 +232,22 @@ namespace BattleCrate.API
 
         #region Constructors
         /// <summary>
-        /// Creates a new BattleCrate API client with an API key and an optional custom base URI.
+        /// Creates a new BattleCrate API client with an optional custom base URI.
         /// </summary>
-        /// <param name="apiKey">Your BattleCrate API key.</param>
         /// <param name="baseApiUri">The base URI to use for the API, or null for default.</param>
-        protected BaseApiClient(string apiKey, Uri baseApiUri = null)
+        protected BaseApiClient(Uri baseApiUri = null)
         {
             BaseApiUri = baseApiUri ?? DefaultBaseApiUri;
 
             HttpClient = new HttpClient();
-
-            if (string.IsNullOrWhiteSpace(apiKey))
-                throw new ArgumentException("API key must not be null or empty.");
-            else
-            {
-                _apiKey = apiKey;
-
-                HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
-            }
         }
         #endregion
 
         #region Private Methods
         private HttpContent SerializeContent<TContent>(TContent content)
-            => new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+        {
+            return new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+        }
         #endregion
 
         #region Constant Values

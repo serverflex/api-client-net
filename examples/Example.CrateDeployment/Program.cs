@@ -1,4 +1,5 @@
 ﻿using BattleCrate.API;
+using BattleCrate.API.Authentication;
 using BattleCrate.API.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,13 @@ namespace Example.CLI
         public static async Task Main()
         {
             // Create BattleCrate API client.
-            var apiClient = new ApiClient(Environment.GetEnvironmentVariable("API_KEY"));
+            var apiClient = new ApiClient
+            {
+                Authentication = new ApiKeyAuthentication
+                {
+                    ApiKey = Environment.GetEnvironmentVariable("API_KEY")
+                }
+            };
 
             // Get the current user so we can say hello :)
             var user = await apiClient.Accounts.GetUserAsync().ConfigureAwait(false);

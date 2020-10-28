@@ -1,4 +1,5 @@
 ﻿using BattleCrate.API;
+using BattleCrate.API.Authentication;
 using System;
 using System.Threading.Tasks;
 
@@ -12,7 +13,13 @@ namespace Example.CratePlayers
         public async static Task Main()
         {
             // Create client.
-            var apiClient = new ApiClient(Environment.GetEnvironmentVariable("API_KEY"));
+            var apiClient = new ApiClient
+            {
+                Authentication = new ApiKeyAuthentication
+                {
+                    ApiKey = Environment.GetEnvironmentVariable("API_KEY")
+                }
+            };
 
             // Get all Crates on your account.
             var crates = await apiClient.Crates.ListAllCratesAsync().ConfigureAwait(false);

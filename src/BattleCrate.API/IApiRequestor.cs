@@ -1,4 +1,5 @@
-﻿using BattleCrate.API.Entities;
+﻿using BattleCrate.API.Authentication.Base;
+using BattleCrate.API.Entities;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -9,6 +10,11 @@ namespace BattleCrate.API
     public interface IApiRequestor
     {
         #region Properties
+        /// <summary>
+        /// Gets or sets the API authentication.
+        /// </summary>
+        IApiAuthentication Authentication { get; set; }
+
         /// <summary>
         /// Gets or sets the base URI to use for the API.
         /// </summary>
