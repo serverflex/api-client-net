@@ -7,6 +7,12 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
+        /// Gets or sets the billing type.
+        /// </summary>
+        [JsonProperty("billingType")]
+        public string BillingType { get; set; }
+
+        /// <summary>
         /// Gets or sets the name for the new Crate.
         /// </summary>
         [JsonProperty("name")]
