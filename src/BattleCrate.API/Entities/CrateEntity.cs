@@ -7,6 +7,12 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
+        /// Gets or sets the billing type.
+        /// </summary>
+        [JsonProperty("bilingType")]
+        public string BillingType { get; set; }
+
+        /// <summary>
         /// Gets or sets the time that the Crate was created.
         /// </summary>
         [JsonProperty("createdAt")]
