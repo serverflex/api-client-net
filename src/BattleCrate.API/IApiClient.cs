@@ -21,6 +21,11 @@ namespace BattleCrate.API
         ICrateOperations Crates { get; }
 
         /// <summary>
+        /// Gets the API operations for Crate settings.
+        /// </summary>
+        ICrateSettingOperations CrateSettings { get; }
+
+        /// <summary>
         /// Gets the API operations for Crate sharing.
         /// </summary>
         ICrateSharingOperations CrateSharing { get; }

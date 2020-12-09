@@ -7,19 +7,25 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets whether resources can be deployed to this Region.
+        /// Gets or sets whether the Region can have services deployed to it.
         /// </summary>
         [JsonProperty("canDeploy")]
         public bool CanDeploy { get; set; }
 
         /// <summary>
-        /// Gets or sets the Region's display name.
+        /// Gets or sets the city where the Region is located.
         /// </summary>
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
+        [JsonProperty("city")]
+        public string City { get; set; }
 
         /// <summary>
-        /// Gets or sets the URLs for this Regions's flag, in size order.
+        /// Gets or sets the country where the Region is located.
+        /// </summary>
+        [JsonProperty("country")]
+        public string Country { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL of the flag associated with the Region.
         /// </summary>
         [JsonProperty("flagUrl")]
         public Dictionary<int, string> FlagUrl { get; set; }

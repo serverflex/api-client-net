@@ -2,7 +2,7 @@
 
 namespace BattleCrate.API.Entities
 {
-    public class CrateProfilePropertyValueEntity
+    public class AcceptedValueEntity
     {
         #region Properties
         /// <summary>
