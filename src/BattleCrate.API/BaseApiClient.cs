@@ -32,7 +32,7 @@ namespace BattleCrate.API
         /// <summary>
         /// Gets the API client's underlying HTTP client.
         /// </summary>
-        public HttpClient HttpClient { get; private set; }
+        public HttpClient HttpClient { get; }
 
         /// <summary>
         /// Gets or sets how many times an operation should be retried for transient failures. Default value: 3.
