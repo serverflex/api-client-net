@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BattleCrate.API.Authentication.Base
+namespace BattleCrate.API.Authentication
 {
     public interface IApiAuthentication
     {

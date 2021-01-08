@@ -14,7 +14,9 @@ namespace BattleCrate.API.Operations
         /// </summary>
         /// <param name="regionName">The name of the Region.</param>
         public virtual Task<RegionEntity> GetRegion(string regionName, CancellationToken cancellationToken = default)
-            => ((IRegionOperations)this).GetRegion<RegionEntity>(regionName, cancellationToken);
+        {
+            return ((IRegionOperations)this).GetRegion<RegionEntity>(regionName, cancellationToken);
+        }
 
         /// <summary>
         /// Get a Region.
@@ -22,20 +24,26 @@ namespace BattleCrate.API.Operations
         /// <param name="regionName">The name of the Region.</param>
         public virtual Task<TRegionEntity> GetRegion<TRegionEntity>(string regionName, CancellationToken cancellationToken = default)
             where TRegionEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<TRegionEntity>(HttpMethod.Get, $"region/{regionName}", cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<TRegionEntity>(HttpMethod.Get, $"region/{regionName}", cancellationToken);
+        }
 
         /// <summary>
         /// Get all available Regions.
         /// </summary>
         public virtual Task<RegionEntity[]> ListAllRegionsAsync(CancellationToken cancellationToken = default)
-            => ((IRegionOperations)this).ListAllRegionsAsync<RegionEntity>(cancellationToken);
+        {
+            return ((IRegionOperations)this).ListAllRegionsAsync<RegionEntity>(cancellationToken);
+        }
 
         /// <summary>
         /// Get all available Regions.
         /// </summary>
         public virtual Task<TRegionEntity[]> ListAllRegionsAsync<TRegionEntity>(CancellationToken cancellationToken = default)
             where TRegionEntity : class
-            => ApiRequestor.RequestEntireListJsonSerializedAsync<TRegionEntity>("region", cancellationToken);
+        {
+            return ApiRequestor.RequestEntireListJsonSerializedAsync<TRegionEntity>("region", cancellationToken);
+        }
 
         /// <summary>
         /// Get a page of Regions.
@@ -43,7 +51,9 @@ namespace BattleCrate.API.Operations
         /// <param name="limit">The maximum number of Regions that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         public virtual Task<ResultResponseEntity<RegionEntity>> ListRegionsAsync(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
-            => ((IRegionOperations)this).ListRegionsAsync<RegionEntity>(limit, page, cancellationToken);
+        {
+            return ((IRegionOperations)this).ListRegionsAsync<RegionEntity>(limit, page, cancellationToken);
+        }
 
         /// <summary>
         /// Get a page of Regions.
@@ -52,7 +62,9 @@ namespace BattleCrate.API.Operations
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         public virtual Task<ResultResponseEntity<TRegionEntity>> ListRegionsAsync<TRegionEntity>(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
             where TRegionEntity : class
-            => ApiRequestor.RequestResultResponseJsonSerializedAsync<TRegionEntity>(limit, page, "region", cancellationToken);
+        {
+            return ApiRequestor.RequestResultResponseJsonSerializedAsync<TRegionEntity>(limit, page, "region", cancellationToken);
+        }
         #endregion
 
         #region Constructors

@@ -16,7 +16,9 @@ namespace BattleCrate.API.Operations
         /// <param name="crateUuid">The UUID of the Crate to add the user to.</param>
         /// <param name="newUser">The new user configuration.</param>
         public virtual Task<UserSharingEntity> AddCrateUserSharingAsync(Guid crateUuid, UserSharingNewEntity newUser, CancellationToken cancellationToken = default)
-            => ((ICrateSharingOperations)this).AddCrateUserSharingAsync<UserSharingEntity>(crateUuid, newUser, cancellationToken);
+        {
+            return ((ICrateSharingOperations)this).AddCrateUserSharingAsync<UserSharingEntity>(crateUuid, newUser, cancellationToken);
+        }
 
         /// <summary>
         /// Shares a Crate with another user.
@@ -25,7 +27,9 @@ namespace BattleCrate.API.Operations
         /// <param name="newUser">The new user configuration.</param>
         public virtual Task<TUserSharingEntity> AddCrateUserSharingAsync<TUserSharingEntity>(Guid crateUuid, UserSharingNewEntity newUser, CancellationToken cancellationToken = default)
             where TUserSharingEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<UserSharingNewEntity, TUserSharingEntity>(HttpMethod.Post, $"crate/{crateUuid}/sharing/add", newUser, cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<UserSharingNewEntity, TUserSharingEntity>(HttpMethod.Post, $"crate/{crateUuid}/sharing/add", newUser, cancellationToken);
+        }
 
         /// <summary>
         /// Delete a user from the sharing of a Crate.
@@ -33,7 +37,9 @@ namespace BattleCrate.API.Operations
         /// <param name="crateUuid">The UUID of the Crate to remove the user from.</param>
         /// <param name="userUuid">The UUID of the user to remove.</param>
         public virtual Task DeleteCrateUserSharingAsync(Guid crateUuid, Guid userUuid, CancellationToken cancellationToken = default)
-            => ApiRequestor.RequestAsync(HttpMethod.Delete, $"crate/{crateUuid}/sharing/{userUuid}", null, cancellationToken);
+        {
+            return ApiRequestor.RequestAsync(HttpMethod.Delete, $"crate/{crateUuid}/sharing/{userUuid}", null, cancellationToken);
+        }
 
         /// <summary>
         /// Edit the Crate sharing settings for a user.
@@ -42,7 +48,9 @@ namespace BattleCrate.API.Operations
         /// <param name="userUuid">The UUID of the user to update the settings for.</param>
         /// <param name="changes">The changes to make.</param>
         public virtual Task<UserSharingEntity> EditCrateUserSharingAsync(Guid crateUuid, Guid userUuid, UserSharingEditEntity changes, CancellationToken cancellationToken = default)
-            => ((ICrateSharingOperations)this).EditCrateUserSharingAsync<UserSharingEntity>(crateUuid, userUuid, changes, cancellationToken);
+        {
+            return ((ICrateSharingOperations)this).EditCrateUserSharingAsync<UserSharingEntity>(crateUuid, userUuid, changes, cancellationToken);
+        }
 
         /// <summary>
         /// Edit the Crate sharing settings for a user.
@@ -52,14 +60,18 @@ namespace BattleCrate.API.Operations
         /// <param name="changes">The changes to make.</param>
         public virtual Task<TUserSharingEntity> EditCrateUserSharingAsync<TUserSharingEntity>(Guid crateUuid, Guid userUuid, UserSharingEditEntity changes, CancellationToken cancellationToken = default)
             where TUserSharingEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<UserSharingEditEntity, TUserSharingEntity>(HttpMethod.Post, $"crate/{crateUuid}/sharing/{userUuid}", changes, cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<UserSharingEditEntity, TUserSharingEntity>(HttpMethod.Post, $"crate/{crateUuid}/sharing/{userUuid}", changes, cancellationToken);
+        }
 
         /// <summary>
         /// Get the user sharing for a Crate.
         /// </summary>
         /// <param name="crateUuid">The UUID of the Crate to get sharing for.</param>
         public virtual Task<UserSharingEntity[]> ListAllCrateUserSharingAsync(Guid crateUuid, CancellationToken cancellationToken = default)
-            => ((ICrateSharingOperations)this).ListAllCrateUserSharingAsync<UserSharingEntity>(crateUuid, cancellationToken);
+        {
+            return ((ICrateSharingOperations)this).ListAllCrateUserSharingAsync<UserSharingEntity>(crateUuid, cancellationToken);
+        }
 
         /// <summary>
         /// Get the user sharing for a Crate.
@@ -67,7 +79,9 @@ namespace BattleCrate.API.Operations
         /// <param name="crateUuid">The UUID of the Crate to get sharing for.</param>
         public virtual Task<TUserSharingEntity[]> ListAllCrateUserSharingAsync<TUserSharingEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
             where TUserSharingEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<TUserSharingEntity[]>(HttpMethod.Get, $"crate/{crateUuid}/sharing", cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<TUserSharingEntity[]>(HttpMethod.Get, $"crate/{crateUuid}/sharing", cancellationToken);
+        }
         #endregion
 
         #region Constructors

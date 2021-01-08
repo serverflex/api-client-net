@@ -13,40 +13,52 @@ namespace BattleCrate.API.Operations
         /// Get the current user.
         /// </summary>
         public virtual Task<UserEntity> GetUserAsync(CancellationToken cancellationToken = default)
-            => ((IAccountOperations)this).GetUserAsync<UserEntity>(cancellationToken);
+        {
+            return ((IAccountOperations)this).GetUserAsync<UserEntity>(cancellationToken);
+        }
 
         /// <summary>
         /// Get the current user.
         /// </summary>
         public virtual Task<TUserEntity> GetUserAsync<TUserEntity>(CancellationToken cancellationToken = default)
             where TUserEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<TUserEntity>(HttpMethod.Get, "account", cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<TUserEntity>(HttpMethod.Get, "account", cancellationToken);
+        }
 
         /// <summary>
         /// Get the balance for the current user, in all supported currencies.
         /// </summary>
         public virtual Task<BalanceEntity[]> GetBalanceAsync(CancellationToken cancellationToken = default)
-            => ((IAccountOperations)this).GetBalanceAsync<BalanceEntity>(cancellationToken);
+        {
+            return ((IAccountOperations)this).GetBalanceAsync<BalanceEntity>(cancellationToken);
+        }
 
         /// <summary>
         /// Get the balance for the current user, in all supported currencies.
         /// </summary>
         public virtual Task<TBalanceEntity[]> GetBalanceAsync<TBalanceEntity>(CancellationToken cancellationToken = default)
             where TBalanceEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<TBalanceEntity[]>(HttpMethod.Get, "account/balance", cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<TBalanceEntity[]>(HttpMethod.Get, "account/balance", cancellationToken);
+        }
 
         /// <summary>
         /// Gets the referral overview for the current user.
         /// </summary>
         public virtual Task<ReferralOverviewEntity> GetReferralOverviewAsync(CancellationToken cancellationToken = default)
-            => ((IAccountOperations)this).GetReferralOverviewAsync<ReferralOverviewEntity>(cancellationToken);
+        {
+            return ((IAccountOperations)this).GetReferralOverviewAsync<ReferralOverviewEntity>(cancellationToken);
+        }
 
         /// <summary>
         /// Gets the referral overview for the current user.
         /// </summary>
         public virtual Task<TReferralOverviewEntity> GetReferralOverviewAsync<TReferralOverviewEntity>(CancellationToken cancellationToken = default)
             where TReferralOverviewEntity : class
-            => ApiRequestor.RequestJsonSerializedAsync<TReferralOverviewEntity>(HttpMethod.Get, "account/referral_overview", cancellationToken);
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<TReferralOverviewEntity>(HttpMethod.Get, "account/referral_overview", cancellationToken);
+        }
         #endregion
 
         #region Constructors
