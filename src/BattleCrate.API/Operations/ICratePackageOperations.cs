@@ -45,6 +45,18 @@ namespace BattleCrate.API.Operations
         /// <param name="page">The cursor for the next batch of results.</param>
         Task<ResultResponseEntity<TCratePackageEntity>> ListCratePackagesAsync<TCratePackageEntity>(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
             where TCratePackageEntity : class;
+
+        /// Get all Crate settings.
+        /// </summary>
+        /// <param name="packageName">The package name.</param>
+        Task<CrateSettingEntity[]> ListAllCratePackageProperties(string packageName, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get all Crate settings.
+        /// </summary>
+        /// <param name="packageName">The package name.</param>
+        Task<TCrateSettingEntity[]> ListAllCratePackageProperties<TCrateSettingEntity>(string packageName, CancellationToken cancellationToken = default)
+            where TCrateSettingEntity : class;
         #endregion
     }
 }

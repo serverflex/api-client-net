@@ -65,6 +65,24 @@ namespace BattleCrate.API.Operations
         {
             return ApiRequestor.RequestResultResponseJsonSerializedAsync<TCratePackageEntity>(limit, page, "crate_package", cancellationToken);
         }
+        
+        /// Get all Crate settings.
+        /// </summary>
+        /// <param name="packageName">The package name.</param>
+        public Task<CrateSettingEntity[]> ListAllCratePackageProperties(string packageName, CancellationToken cancellationToken = default)
+        {
+            return ((ICratePackageOperations)this).ListAllCratePackageProperties<CrateSettingEntity>(crateUuid, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get all Crate settings.
+        /// </summary>
+        /// <param name="packageName">The package name.</param>
+        public Task<TCrateSettingEntity[]> ListAllCratePackageProperties<TCrateSettingEntity>(string packageName, CancellationToken cancellationToken = default)
+            where TCrateSettingEntity : class
+        {
+            return ApiRequestor.RequestJsonSerializedAsync<TCrateSettingEntity[]>(HttpMethod.Get, $"crate_package/{packageName}/properties", cancellationToken);
+        }
         #endregion
 
         #region Constructors
