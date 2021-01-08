@@ -34,24 +34,6 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("runtimes")]
         public CrateRuntimeEntity[] Runtimes { get; set; }
-
-        /// <summary>
-        /// Gets or sets the total number of Crate Plans available for this Crate Package.
-        /// </summary>
-        [JsonProperty("totalPlanCount")]
-        public int TotalPlanCount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the total number of Regions this Crate Package can be deployed to.
-        /// </summary>
-        [JsonProperty("totalRegionCount")]
-        public int TotalRegionCount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the total number of Crate Runtimes available for this Crate Package.
-        /// </summary>
-        [JsonProperty("totalRuntimes")]
-        public int TotalRuntimeCount { get; set; }
         #endregion
     }
 }

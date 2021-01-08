@@ -24,10 +24,10 @@ namespace BattleCrate.API.Entities
         public string PackageName { get; set; }
 
         /// <summary>
-        /// Gets or sets the pricing for the Plan. The array contains all available currencies. Depending on where the Plan was requested, pricing may not be included.
+        /// Gets or sets the pricing for the Plan.
         /// </summary>
         [JsonProperty("pricing")]
-        public PricingEntity[] Pricing { get; set; }
+        public PricingEntity Pricing { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Region that this Plan can be deployed to, if specific. Otherwise, null.
