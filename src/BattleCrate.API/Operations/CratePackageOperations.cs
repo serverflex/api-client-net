@@ -71,7 +71,7 @@ namespace BattleCrate.API.Operations
         /// <param name="packageName">The package name.</param>
         public Task<CrateSettingEntity[]> ListAllCratePackageProperties(string packageName, CancellationToken cancellationToken = default)
         {
-            return ((ICratePackageOperations)this).ListAllCratePackageProperties<CrateSettingEntity>(crateUuid, cancellationToken);
+            return ((ICratePackageOperations)this).ListAllCratePackageProperties<CrateSettingEntity>(packageName, cancellationToken);
         }
 
         /// <summary>
