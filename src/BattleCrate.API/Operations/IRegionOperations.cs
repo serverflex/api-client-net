@@ -11,13 +11,13 @@ namespace BattleCrate.API.Operations
         /// Get a Region.
         /// </summary>
         /// <param name="regionName">The name of the Region.</param>
-        Task<RegionEntity> GetRegion(string regionName, CancellationToken cancellationToken = default);
+        Task<RegionEntity> GetRegionAsync(string regionName, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a Region.
         /// </summary>
         /// <param name="regionName">The name of the Region.</param>
-        Task<TRegionEntity> GetRegion<TRegionEntity>(string regionName, CancellationToken cancellationToken = default)
+        Task<TRegionEntity> GetRegionAsync<TRegionEntity>(string regionName, CancellationToken cancellationToken = default)
             where TRegionEntity : class;
 
         /// <summary>

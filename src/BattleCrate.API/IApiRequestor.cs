@@ -1,4 +1,4 @@
-﻿using BattleCrate.API.Authentication.Base;
+﻿using BattleCrate.API.Authentication;
 using BattleCrate.API.Entities;
 using System;
 using System.Net.Http;

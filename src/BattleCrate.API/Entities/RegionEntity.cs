@@ -25,12 +25,6 @@ namespace BattleCrate.API.Entities
         public string Country { get; set; }
 
         /// <summary>
-        /// Gets or sets the URL of the flag associated with the Region.
-        /// </summary>
-        [JsonProperty("flagUrl")]
-        public Dictionary<int, string> FlagUrl { get; set; }
-
-        /// <summary>
         /// Gets or sets the Region's unique name.
         /// </summary>
         [JsonProperty("name")]

@@ -55,16 +55,16 @@ namespace BattleCrate.API.Entities
         public CratePlanEntity Plan { get; set; }
 
         /// <summary>
-        /// Gets or sets the Crate's Crate Profile.
-        /// </summary>
-        [JsonProperty("profile")]
-        public CrateProfileEntity Profile { get; set; }
-
-        /// <summary>
         /// Gets or sets the Region where the Crate is deployed.
         /// </summary>
         [JsonProperty("region")]
         public RegionEntity Region { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Crate Runtimes running on this Crate.
+        /// </summary>
+        [JsonProperty("runtimes")]
+        public CrateRuntimeEntity[] Runtimes { get; set; }
 
         /// <summary>
         /// Gets or sets the Crate's current state.

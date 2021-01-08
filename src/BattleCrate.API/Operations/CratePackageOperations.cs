@@ -29,27 +29,6 @@ namespace BattleCrate.API.Operations
         }
 
         /// <summary>
-        /// Get a Crate Profile.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profile belongs to.</param>
-        /// <param name="crateProfileName">The name of the Crate Profile.</param>
-        public virtual Task<CrateProfileEntity> GetCrateProfileAsync(string cratePackageName, string crateProfileName, CancellationToken cancellationToken = default)
-        {
-            return ((ICratePackageOperations)this).GetCrateProfileAsync<CrateProfileEntity>(cratePackageName, crateProfileName, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a Crate Profile.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profile belongs to.</param>
-        /// <param name="crateProfileName">The name of the Crate Profile.</param>
-        public virtual Task<TCrateProfileEntity> GetCrateProfileAsync<TCrateProfileEntity>(string cratePackageName, string crateProfileName, CancellationToken cancellationToken = default)
-            where TCrateProfileEntity : class
-        {
-            return ApiRequestor.RequestJsonSerializedAsync<TCrateProfileEntity>(HttpMethod.Get, $"crate_package/{cratePackageName}/profile/{crateProfileName}", cancellationToken);
-        }
-
-        /// <summary>
         /// Get all available Crate Packages.
         /// </summary>
         public virtual Task<CratePackageEntity[]> ListAllCratePackagesAsync(CancellationToken cancellationToken = default)
@@ -64,46 +43,6 @@ namespace BattleCrate.API.Operations
             where TCratePackageEntity : class
         {
             return ApiRequestor.RequestEntireListJsonSerializedAsync<TCratePackageEntity>("crate_package", cancellationToken);
-        }
-
-        /// <summary>
-        /// Get all available Crate Profiles.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profiles belong to.</param>
-        public virtual Task<CrateProfileEntity[]> ListAllCrateProfilesAsync(string cratePackageName, CancellationToken cancellationToken = default)
-        {
-            return ((ICratePackageOperations)this).ListAllCrateProfilesAsync<CrateProfileEntity>(cratePackageName, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get all available Crate Profiles.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profiles belong to.</param>
-        public virtual Task<TCrateProfileEntity[]> ListAllCrateProfilesAsync<TCrateProfileEntity>(string cratePackageName, CancellationToken cancellationToken = default)
-            where TCrateProfileEntity : class
-        {
-            return ApiRequestor.RequestEntireListJsonSerializedAsync<TCrateProfileEntity>($"crate_package/{cratePackageName}/profile", cancellationToken);
-        }
-
-        /// <summary>
-        /// Get all Crate Profile properties.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profile belongs to.</param>
-        /// <param name="crateProfileName">The name of the Crate Profile.</param>
-        public virtual Task<CrateProfilePropertyEntity[]> ListAllCrateProfilePropertiesAsync(string cratePackageName, string crateProfileName, CancellationToken cancellationToken = default)
-        {
-            return ((ICratePackageOperations)this).ListAllCrateProfilePropertiesAsync<CrateProfilePropertyEntity>(cratePackageName, crateProfileName, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get all Crate Profile properties.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profile belongs to.</param>
-        /// <param name="crateProfileName">The name of the Crate Profile.</param>
-        public virtual Task<TCrateProfilePropertyEntity[]> ListAllCrateProfilePropertiesAsync<TCrateProfilePropertyEntity>(string cratePackageName, string crateProfileName, CancellationToken cancellationToken = default)
-            where TCrateProfilePropertyEntity : class
-        {
-            return ApiRequestor.RequestJsonSerializedAsync<TCrateProfilePropertyEntity[]>(HttpMethod.Get, $"crate_package/{cratePackageName}/profile/{crateProfileName}/properties", cancellationToken);
         }
 
         /// <summary>
@@ -125,29 +64,6 @@ namespace BattleCrate.API.Operations
             where TCratePackageEntity : class
         {
             return ApiRequestor.RequestResultResponseJsonSerializedAsync<TCratePackageEntity>(limit, page, "crate_package", cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a page of Crate Profiles.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profiles belong to.</param>
-        /// <param name="limit">The maximum number of Crate Profiles that can be returned. Minimum: 1, maximum: 50.</param>
-        /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
-        public virtual Task<ResultResponseEntity<CrateProfileEntity>> ListCrateProfilesAsync(string cratePackageName, int limit = 25, int page = 1, CancellationToken cancellationToken = default)
-        {
-            return ((ICratePackageOperations)this).ListCrateProfilesAsync<CrateProfileEntity>(cratePackageName, limit, page, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get a page of Crate Profiles.
-        /// </summary>
-        /// <param name="cratePackageName">The name of the Crate Package that the Crate Profiles belong to.</param>
-        /// <param name="limit">The maximum number of Crate Profiles that can be returned. Minimum: 1, maximum: 50.</param>
-        /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
-        public virtual Task<ResultResponseEntity<TCrateProfileEntity>> ListCrateProfilesAsync<TCrateProfileEntity>(string cratePackageName, int limit = 25, int page = 1, CancellationToken cancellationToken = default)
-            where TCrateProfileEntity : class
-        {
-            return ApiRequestor.RequestResultResponseJsonSerializedAsync<TCrateProfileEntity>(limit, page, $"crate_package/{cratePackageName}/profile", cancellationToken);
         }
         #endregion
 

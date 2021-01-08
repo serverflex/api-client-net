@@ -19,16 +19,16 @@ namespace BattleCrate.API.Entities
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the Crate Package to deploy to the new Crate.
+        /// </summary>
+        [JsonProperty("package")]
+        public string PackageName { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the Crate Plan that should be used for the new Crate.
         /// </summary>
         [JsonProperty("plan")]
         public string PlanName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the Profile that should be used to configure the new Crate.
-        /// </summary>
-        [JsonProperty("profile")]
-        public string ProfileName { get; set; }
 
         /// <summary>
         /// Gets or sets any properties required to deploy the Crate.
@@ -41,6 +41,12 @@ namespace BattleCrate.API.Entities
         /// </summary>
         [JsonProperty("region")]
         public string RegionName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the runtimes that should be used for the new Crate.
+        /// </summary>
+        [JsonProperty("runtimes")]
+        public string[] Runtimes { get; set; }
         #endregion
     }
 }

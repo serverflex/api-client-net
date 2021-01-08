@@ -1,6 +1,7 @@
 ﻿using BattleCrate.API;
 using BattleCrate.API.Authentication;
 using BattleCrate.API.Entities;
+using BattleCrate.API.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,9 +42,6 @@ namespace Example.CLI
                 return;
             }
 
-            // Get the latest Crate Profile for the Crate Package.
-            var crateProfile = minecrateCratePackage.Profiles.OrderByDescending(p => p.Name).First();
-
             // Get the lowest tier Crate Plan.
             var cratePlan = minecrateCratePackage.Plans.OrderBy(p => p.Pricing.Sum(pr => pr.CostMonthly)).First();
 
@@ -52,14 +50,20 @@ namespace Example.CLI
 
             var newCrateConfiguration = new CrateDeployEntity
             {
+                BillingType = BillingType.Hourly,
                 Name = $".NET API Client Sample Crate",
+                PackageName = minecrateCratePackage.Name,
                 PlanName = cratePlan.Name,
-                ProfileName = crateProfile.Name,
-                RegionName = region.Name,
                 Properties = new Dictionary<string, object>
                 {
-                    ["eula"] = true,
-                    ["version"] = "1.15.2"
+                    ["eula"] = true
+                },
+                RegionName = region.Name,
+                Runtimes = new[]
+                {
+                    // Runtimes are formatted [runtime name]:[runtime version].
+                    // This is used to deploy a vanilla Minecraft Crate on the latest version of Minecraft.
+                    "vanilla:latest"
                 }
             };
 

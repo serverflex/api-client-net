@@ -13,16 +13,16 @@ namespace BattleCrate.API.Operations
         /// Get a Region.
         /// </summary>
         /// <param name="regionName">The name of the Region.</param>
-        public virtual Task<RegionEntity> GetRegion(string regionName, CancellationToken cancellationToken = default)
+        public virtual Task<RegionEntity> GetRegionAsync(string regionName, CancellationToken cancellationToken = default)
         {
-            return ((IRegionOperations)this).GetRegion<RegionEntity>(regionName, cancellationToken);
+            return ((IRegionOperations)this).GetRegionAsync<RegionEntity>(regionName, cancellationToken);
         }
 
         /// <summary>
         /// Get a Region.
         /// </summary>
         /// <param name="regionName">The name of the Region.</param>
-        public virtual Task<TRegionEntity> GetRegion<TRegionEntity>(string regionName, CancellationToken cancellationToken = default)
+        public virtual Task<TRegionEntity> GetRegionAsync<TRegionEntity>(string regionName, CancellationToken cancellationToken = default)
             where TRegionEntity : class
         {
             return ApiRequestor.RequestJsonSerializedAsync<TRegionEntity>(HttpMethod.Get, $"region/{regionName}", cancellationToken);
