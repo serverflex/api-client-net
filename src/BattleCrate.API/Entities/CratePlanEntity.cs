@@ -6,12 +6,6 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets whether the Plan can currently be deployed.
-        /// </summary>
-        [JsonProperty("canUse")]
-        public bool CanUse { get; set; }
-
-        /// <summary>
         /// Gets or sets the Plan's display name.
         /// </summary>
         [JsonProperty("displayName")]

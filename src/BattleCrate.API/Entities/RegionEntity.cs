@@ -1,17 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace BattleCrate.API.Entities
 {
     public class RegionEntity
     {
         #region Properties
-        /// <summary>
-        /// Gets or sets whether the Region can have services deployed to it.
-        /// </summary>
-        [JsonProperty("canDeploy")]
-        public bool CanDeploy { get; set; }
-
         /// <summary>
         /// Gets or sets the city where the Region is located.
         /// </summary>

@@ -6,12 +6,6 @@ namespace BattleCrate.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets whether resources can be deployed using this Crate Package.
-        /// </summary>
-        [JsonProperty("canDeploy")]
-        public bool CanDeploy { get; set; }
-
-        /// <summary>
         /// Gets or sets the Crate Package's display name.
         /// </summary>
         [JsonProperty("displayName")]
