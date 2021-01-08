@@ -62,5 +62,7 @@ public class CustomApiClient : ApiClient
     {
         return new CustomCrateOperations(this);
     }
+    
+    ...
 }
 ```
