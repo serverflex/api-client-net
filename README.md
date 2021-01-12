@@ -1,16 +1,16 @@
 # api-client-net
 
-The .NET API client for the BattleCrate platform.
+The .NET API client for the ServerFlex platform.
 
 ## Getting Started
 
-The use of the BattleCrate API requires an API key. Head over to the [BattleCrate web app](https://app.battlecrate.io/) to generate one.
+The use of the ServerFlex API requires an API key. Head over to the [ServerFlex web app](https://app.battlecrate.io/) to generate one.
 
-Add a reference to BattleCrate.API.
+Add a reference to ServerFlex.API.
 
 ## Usage
 
-### Create the BattleCrate API client
+### Create the ServerFlex API client
 
 ```
 // Parameterless constructor.
@@ -31,26 +31,26 @@ apiClient.Authentication = new ApiKeyAuthentication
 
 ### Making requests
 
-Requests are separated into operations accessible via the `ApiClient`, for example: `ApiClient.Crates` or `ApiClient.Regions`. View the [sample projects](https://github.com/battlecrate/api-client-net/tree/master/examples) for examples.
+Requests are separated into operations accessible via the `ApiClient`, for example: `ApiClient.Servers` or `ApiClient.Regions`. View the [sample projects](https://github.com/battlecrate/api-client-net/tree/master/examples) for examples.
 
 ### Extending
 
 This client has been designed to maximize extendability. All operation methods are virtual, and have generic method variants so that you can request custom entities without having to create multiple objects. You can override the respective construct methods within `ApiClient` to return your custom operations.
 
 ```
-public class CustomCrateOperations : CrateOperations
+public class CustomServerOperations : ServerOperations
 {
-    public override async Task<TCrateEntity> GetCrateAsync<TCrateEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
-        where TCrateEntity : class
+    public override async Task<TServerEntity> GetServerAsync<TServerEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
+        where TServerEntity : class
     {
-        var crate = await base.GetCrateAsync<TCrateEntity>(crateUuid, cancellationToken);
+        var server = await base.GetServerAsync<TServerEntity>(serverUuid, cancellationToken);
         
-        if (crate is CustomCrateEntity customCrate)
+        if (server is CustomServerEntity customServer)
         {
-            // Custom Crate functionality.
+            // Custom server functionality.
         }
         
-        return crate;
+        return server;
     }
     
     ...
@@ -58,9 +58,9 @@ public class CustomCrateOperations : CrateOperations
 
 public class CustomApiClient : ApiClient
 {
-    protected override ICrateOperations ConstructCrateOperations()
+    protected override IServerOperations ConstructServerOperations()
     {
-        return new CustomCrateOperations(this);
+        return new CustomServerOperations(this);
     }
     
     ...
