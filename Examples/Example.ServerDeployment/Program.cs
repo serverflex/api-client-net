@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Example.CLI
+namespace Example.ServerDeployment
 {
     /// <summary>
     /// An example program to deploy a new server to your account.

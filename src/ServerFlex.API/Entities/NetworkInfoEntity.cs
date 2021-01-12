@@ -12,10 +12,10 @@ namespace ServerFlex.API.Entities
         public string IPAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of open ports.
+        /// Gets or sets all open ports.
         /// </summary>
         [JsonProperty("ports")]
-        public int[] Ports { get; set; }
+        public NetworkInfoPortEntity[] Ports { get; set; }
 
         /// <summary>
         /// Gets or sets the subdomain.

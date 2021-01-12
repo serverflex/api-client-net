@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\BattleCrate.API\ServerFlex.API.csproj" />
+    <ProjectReference Include="..\..\src\ServerFlex.API\ServerFlex.API.csproj" />
   </ItemGroup>
 
 </Project>
