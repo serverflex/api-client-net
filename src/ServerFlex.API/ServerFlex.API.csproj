@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
@@ -6,12 +6,28 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>ServerFlex.API</RootNamespace>
     <AssemblyName>ServerFlex.API</AssemblyName>
+    <Title>ServerFlex.API</Title>
+    <Authors>ServerFlex</Authors>
+    <Company>ServerFlex</Company>
+    <RepositoryUrl>https://github.com/battlecrate/api-client-net</RepositoryUrl>
+    <PackageIcon>image (1).png</PackageIcon>
+    <Copyright>ServerFlex 2021</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>Official ServerFlex API wrapper client library for C#.</Description>
+    <Summary>Official ServerFlex API wrapper client library for C#.</Summary>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="ServerFlex.API.Schema" Version="0.1.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\Downloads\image (1).png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
