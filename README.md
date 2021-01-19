@@ -1,3 +1,6 @@
+[![License: MIT](https://img.shields.io/badge/License-Apache-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
+[![GitHub forks](https://img.shields.io/nuget/dt/ServerFlex.API.svg?style=flat-square)](https://www.nuget.org/packages/ServerFlex.API/)
+
 # api-client-net
 
 The .NET API client for the ServerFlex platform.
