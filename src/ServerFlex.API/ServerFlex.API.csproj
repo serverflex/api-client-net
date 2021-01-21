@@ -16,7 +16,8 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>Official ServerFlex API wrapper client library for C#.</Description>
     <Summary>Official ServerFlex API wrapper client library for C#.</Summary>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
