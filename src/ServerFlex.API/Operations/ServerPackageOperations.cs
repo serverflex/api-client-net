@@ -25,7 +25,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TServerPackageEntity> GetServerPackageAsync<TServerPackageEntity>(string serverPackageName, CancellationToken cancellationToken = default)
             where TServerPackageEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<TServerPackageEntity>(HttpMethod.Get, $"server_package/{serverPackageName}", cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<TServerPackageEntity>(HttpMethod.Get, $"package/{serverPackageName}", cancellationToken);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TServerPackageEntity[]> ListAllServerPackagesAsync<TServerPackageEntity>(CancellationToken cancellationToken = default)
             where TServerPackageEntity : class
         {
-            return ApiRequestor.RequestEntireListJsonSerializedAsync<TServerPackageEntity>("server_package", cancellationToken);
+            return ApiRequestor.RequestEntireListJsonSerializedAsync<TServerPackageEntity>("package", cancellationToken);
         }
 
         /// <summary>
@@ -63,26 +63,26 @@ namespace ServerFlex.API.Operations
         public virtual Task<ResultResponseEntity<TServerPackageEntity>> ListServerPackagesAsync<TServerPackageEntity>(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
             where TServerPackageEntity : class
         {
-            return ApiRequestor.RequestResultResponseJsonSerializedAsync<TServerPackageEntity>(limit, page, "server_package", cancellationToken);
+            return ApiRequestor.RequestResultResponseJsonSerializedAsync<TServerPackageEntity>(limit, page, "package", cancellationToken);
         }
         
         /// <summary>
         /// Get all server properties.
         /// </summary>
         /// <param name="serverPackageName">The server Package name.</param>
-        public Task<ServerSettingEntity[]> ListAllServerPackageProperties(string serverPackageName, CancellationToken cancellationToken = default)
+        public virtual Task<ServerSettingEntity[]> ListAllServerPackagePropertiesAsync(string serverPackageName, CancellationToken cancellationToken = default)
         {
-            return ((IServerPackageOperations)this).ListAllServerPackageProperties<ServerSettingEntity>(serverPackageName, cancellationToken);
+            return ((IServerPackageOperations)this).ListAllServerPackagePropertiesAsync<ServerSettingEntity>(serverPackageName, cancellationToken);
         }
 
         /// <summary>
         /// Get all server properties.
         /// </summary>
         /// <param name="serverPackageName">The server Package name.</param>
-        public Task<TServerSettingEntity[]> ListAllServerPackageProperties<TServerSettingEntity>(string serverPackageName, CancellationToken cancellationToken = default)
+        public virtual Task<TServerSettingEntity[]> ListAllServerPackagePropertiesAsync<TServerSettingEntity>(string serverPackageName, CancellationToken cancellationToken = default)
             where TServerSettingEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<TServerSettingEntity[]>(HttpMethod.Get, $"server_package/{serverPackageName}/properties", cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<TServerSettingEntity[]>(HttpMethod.Get, $"package/{serverPackageName}/properties", cancellationToken);
         }
         #endregion
 

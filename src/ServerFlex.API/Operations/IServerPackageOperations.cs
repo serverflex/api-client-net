@@ -49,13 +49,13 @@ namespace ServerFlex.API.Operations
         /// Get all Crate settings.
         /// </summary>
         /// <param name="packageName">The package name.</param>
-        Task<ServerSettingEntity[]> ListAllServerPackageProperties(string packageName, CancellationToken cancellationToken = default);
+        Task<ServerSettingEntity[]> ListAllServerPackagePropertiesAsync(string packageName, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all Crate settings.
         /// </summary>
         /// <param name="packageName">The package name.</param>
-        Task<TCrateSettingEntity[]> ListAllServerPackageProperties<TCrateSettingEntity>(string packageName, CancellationToken cancellationToken = default)
+        Task<TCrateSettingEntity[]> ListAllServerPackagePropertiesAsync<TCrateSettingEntity>(string packageName, CancellationToken cancellationToken = default)
             where TCrateSettingEntity : class;
         #endregion
     }
