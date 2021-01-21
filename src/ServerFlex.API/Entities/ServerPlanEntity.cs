@@ -18,22 +18,10 @@ namespace ServerFlex.API.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the server Package that the Plan belongs to.
-        /// </summary>
-        [JsonProperty("packageName")]
-        public string PackageName { get; set; }
-
-        /// <summary>
         /// Gets or sets the pricing for the Plan.
         /// </summary>
         [JsonProperty("pricing")]
         public PricingEntity Pricing { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the Region that this Plan can be deployed to, if specific. Otherwise, null.
-        /// </summary>
-        [JsonProperty("regionName")]
-        public string RegionName { get; set; }
 
         /// <summary>
         /// Gets or sets the resources available to this server Plan.
