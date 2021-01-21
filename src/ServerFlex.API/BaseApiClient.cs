@@ -104,7 +104,9 @@ namespace ServerFlex.API
         /// <param name="content">The request content, if any.</param>
         /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<HttpResponseMessage> IApiRequestor.RequestAsync<TRequest>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken, bool formatBaseApiUri)
-            => ((IApiRequestor)this).RequestAsync(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
+        {
+            return ((IApiRequestor)this).RequestAsync(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
+        }
 
         /// <summary>
         /// Sends a REST request to the API. Includes retry logic.
@@ -185,7 +187,9 @@ namespace ServerFlex.API
         /// <param name="path">The request path.</param>
         /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TResponse>(HttpMethod method, string path, CancellationToken cancellationToken, bool formatBaseApiUri)
-            => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, null, cancellationToken, formatBaseApiUri);
+        {
+            return ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, null, cancellationToken, formatBaseApiUri);
+        }
 
         /// <summary>
         /// Request a serialized object response with serialized content.
@@ -195,7 +199,9 @@ namespace ServerFlex.API
         /// <param name="content">The request content.</param>
         /// <param name="formatBaseApiUri">Whether to format the provided path with the client's <see cref="BaseApiUri" />.</param>
         Task<TResponse> IApiRequestor.RequestJsonSerializedAsync<TRequest, TResponse>(HttpMethod method, string path, TRequest content, CancellationToken cancellationToken, bool formatBaseApiUri)
-            => ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
+        {
+            return ((IApiRequestor)this).RequestJsonSerializedAsync<TResponse>(method, path, SerializeContent(content), cancellationToken, formatBaseApiUri);
+        }
 
         /// <summary>
         /// Request a serialized object response with content.
