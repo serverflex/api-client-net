@@ -10,11 +10,13 @@
     <Authors>ServerFlex</Authors>
     <Company>ServerFlex</Company>
     <RepositoryUrl>https://github.com/battlecrate/api-client-net</RepositoryUrl>
+    <PackageProjectUrl>https://serverflex.io</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <Copyright>ServerFlex 2021</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>Official ServerFlex API wrapper client library for C#.</Description>
     <Summary>Official ServerFlex API wrapper client library for C#.</Summary>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
