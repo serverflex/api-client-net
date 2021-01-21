@@ -10,7 +10,7 @@
     <Authors>ServerFlex</Authors>
     <Company>ServerFlex</Company>
     <RepositoryUrl>https://github.com/battlecrate/api-client-net</RepositoryUrl>
-    <PackageIcon>image (1).png</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <Copyright>ServerFlex 2021</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>Official ServerFlex API wrapper client library for C#.</Description>
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\..\Downloads\image (1).png">
+    <None Include="icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
