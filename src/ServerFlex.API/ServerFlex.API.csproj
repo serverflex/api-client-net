@@ -16,13 +16,13 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>Official ServerFlex API wrapper client library for C#.</Description>
     <Summary>Official ServerFlex API wrapper client library for C#.</Summary>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="ServerFlex.API.Schema" Version="0.1.0" />
+    <PackageReference Include="ServerFlex.API.Schema" Version="0.1.1" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
