@@ -70,9 +70,9 @@ namespace ServerFlex.API.Operations
         /// Get all server properties.
         /// </summary>
         /// <param name="serverPackageName">The server Package name.</param>
-        public virtual Task<ServerSettingEntity[]> ListAllServerPackagePropertiesAsync(string serverPackageName, CancellationToken cancellationToken = default)
+        public virtual Task<ServerPropertyEntity[]> ListAllServerPackagePropertiesAsync(string serverPackageName, CancellationToken cancellationToken = default)
         {
-            return ((IServerPackageOperations)this).ListAllServerPackagePropertiesAsync<ServerSettingEntity>(serverPackageName, cancellationToken);
+            return ((IServerPackageOperations)this).ListAllServerPackagePropertiesAsync<ServerPropertyEntity>(serverPackageName, cancellationToken);
         }
 
         /// <summary>

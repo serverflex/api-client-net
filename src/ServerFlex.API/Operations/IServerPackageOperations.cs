@@ -49,7 +49,7 @@ namespace ServerFlex.API.Operations
         /// Get all Crate settings.
         /// </summary>
         /// <param name="packageName">The package name.</param>
-        Task<ServerSettingEntity[]> ListAllServerPackagePropertiesAsync(string packageName, CancellationToken cancellationToken = default);
+        Task<ServerPropertyEntity[]> ListAllServerPackagePropertiesAsync(string packageName, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all Crate settings.

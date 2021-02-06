@@ -10,7 +10,7 @@ namespace ServerFlex.API
         private readonly IRegionOperations _regionOperations;
         private readonly IServerOperations _serverOperations;
         private readonly IServerPackageOperations _serverPackageOperations;
-        private readonly IServerSettingOperations _serverSettingOperations;
+        private readonly IServerPropertyOperations _serverPropertyOperations;
         private readonly IServerSharingOperations _serverSharingOperations;
         #endregion
 
@@ -36,9 +36,9 @@ namespace ServerFlex.API
         public virtual IServerOperations Servers => _serverOperations;
 
         /// <summary>
-        /// Gets the API operations for server settings.
+        /// Gets the API operations for server properties.
         /// </summary>
-        public virtual IServerSettingOperations ServerSettings => _serverSettingOperations;
+        public virtual IServerPropertyOperations ServerProperties => _serverPropertyOperations;
 
         /// <summary>
         /// Gets the API operations for server sharing.
@@ -67,9 +67,9 @@ namespace ServerFlex.API
             return new ServerPackageOperations(this);
         }
 
-        protected virtual IServerSettingOperations ConstructServerSettingOperations()
+        protected virtual IServerPropertyOperations ConstructServerPropertyOperations()
         {
-            return new ServerSettingOperations(this);
+            return new ServerPropertyOperations(this);
         }
 
         protected virtual IServerSharingOperations ConstructServerSharingOperations()
@@ -90,7 +90,7 @@ namespace ServerFlex.API
             _regionOperations = ConstructRegionOpertaions();
             _serverOperations = ConstructServerOpertaions();
             _serverPackageOperations = ConstructServerPackageOpertaions();
-            _serverSettingOperations = ConstructServerSettingOperations();
+            _serverPropertyOperations = ConstructServerPropertyOperations();
             _serverSharingOperations = ConstructServerSharingOperations();
         }
         #endregion

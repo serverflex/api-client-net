@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace ServerFlex.API.Operations
 {
-    public class ServerSettingOperations : BaseOperations, IServerSettingOperations
+    public class ServerPropertyOperations : BaseOperations, IServerPropertyOperations
     {
         #region Public Methods
         /// <summary>
-        /// Get all server settings.
+        /// Get all server properties.
         /// </summary>
-        /// <param name="serverUuid">The UUID of the server to get settings for.</param>
-        public Task<ServerSettingEntity[]> ListAllServerSettingsAsync(Guid serverUuid, CancellationToken cancellationToken = default)
+        /// <param name="serverUuid">The UUID of the server to get properties for.</param>
+        public Task<ServerPropertyEntity[]> ListAllServerPropertiesAsync(Guid serverUuid, CancellationToken cancellationToken = default)
         {
-            return ((IServerSettingOperations)this).ListAllServerSettingsAsync<ServerSettingEntity>(serverUuid, cancellationToken);
+            return ((IServerPropertyOperations)this).ListAllServerPropertiesAsync<ServerPropertyEntity>(serverUuid, cancellationToken);
         }
 
         /// <summary>
-        /// Get all server settings.
+        /// Get all server properties.
         /// </summary>
-        /// <param name="serverUuid">The UUID of the server to get settings for.</param>
-        public Task<TServerSettingEntity[]> ListAllServerSettingsAsync<TServerSettingEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
+        /// <param name="serverUuid">The UUID of the server to get properties for.</param>
+        public Task<TServerSettingEntity[]> ListAllServerPropertiesAsync<TServerSettingEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
             where TServerSettingEntity : class
         {
             return ApiRequestor.RequestJsonSerializedAsync<TServerSettingEntity[]>(HttpMethod.Get, $"server/{serverUuid}/settings", cancellationToken);
@@ -35,7 +35,7 @@ namespace ServerFlex.API.Operations
         /// Creates a new set of API operations for server settings.
         /// </summary>
         /// <param name="apiRequestor">The API requestor to use for communicating with the API.</param>
-        public ServerSettingOperations(IApiRequestor apiRequestor)
+        public ServerPropertyOperations(IApiRequestor apiRequestor)
             : base(apiRequestor)
         {
         }

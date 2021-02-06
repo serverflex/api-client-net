@@ -28,7 +28,7 @@ namespace ServerFlex.API
         /// <summary>
         /// Gets the API operations for server settings.
         /// </summary>
-        IServerSettingOperations ServerSettings { get; }
+        IServerPropertyOperations ServerProperties { get; }
 
         /// <summary>
         /// Gets the API operations for server sharing.
