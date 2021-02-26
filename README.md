@@ -7,7 +7,7 @@ The .NET API client for the ServerFlex platform.
 
 ## Getting Started
 
-The use of the ServerFlex API requires an API key. Head over to the [ServerFlex web app](https://app.battlecrate.io/) to generate one.
+The use of the ServerFlex API requires an API key. Head over to the [ServerFlex web app](https://app.serverflex.io/) to generate one.
 
 Add a reference to ServerFlex.API.
 
