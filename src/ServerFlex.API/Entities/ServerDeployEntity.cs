@@ -47,6 +47,12 @@ namespace ServerFlex.API.Entities
         /// </summary>
         [JsonProperty("runtimes")]
         public string[] Runtimes { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to deploy the server using your free trial. The deployment request will fail if your account does not have a free trial available for the specified game.
+        /// </summary>
+        [JsonProperty("useTrial")]
+        public bool UseTrial { get; set; }
         #endregion
     }
 }

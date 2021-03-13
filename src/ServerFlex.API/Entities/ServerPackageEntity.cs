@@ -18,6 +18,12 @@ namespace ServerFlex.API.Entities
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets whether this package can deployed using a free trial.
+        /// </summary>
+        [JsonProperty("freeTrialAvailable")]
+        public bool FreeTrialAvailable { get; set; }
+
+        /// <summary>
         /// Gets or sets the server Plans available with this server Package.
         /// </summary>
         [JsonProperty("plans")]

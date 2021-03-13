@@ -12,6 +12,12 @@ namespace ServerFlex.API.Entities
         public string DisplayName { get; set; }
 
         /// <summary>
+        /// Gets or sets whether the Plan is free trial eligible.
+        /// </summary>
+        [JsonProperty("isFreeTrialEligible")]
+        public bool IsFreeTrialEligible { get; set; }
+
+        /// <summary>
         /// Gets or sets the Plan's unique name.
         /// </summary>
         [JsonProperty("name")]
