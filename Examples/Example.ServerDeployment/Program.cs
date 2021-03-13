@@ -53,7 +53,7 @@ namespace Example.ServerDeployment
                 BillingType = BillingType.Hourly,
                 Name = $".NET API Client Sample Server",
                 PackageName = minecraftServerPackage.Name,
-                PlanName = serverPlan.Name,
+                PlanUUID = serverPlan.UUID,
                 Properties = new Dictionary<string, object>
                 {
                     ["eula"] = true

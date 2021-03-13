@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ServerFlex.API.Entities
@@ -21,14 +22,14 @@ namespace ServerFlex.API.Entities
         /// <summary>
         /// Gets or sets the name of the server Package to deploy to the new server.
         /// </summary>
-        [JsonProperty("package")]
+        [JsonProperty("packageName")]
         public string PackageName { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the server Plan that should be used for the new server.
+        /// Gets or sets the UUID of the server Plan that should be used for the new server.
         /// </summary>
-        [JsonProperty("plan")]
-        public string PlanName { get; set; }
+        [JsonProperty("planUuid")]
+        public Guid PlanUUID { get; set; }
 
         /// <summary>
         /// Gets or sets any properties required to deploy the server.
@@ -39,7 +40,7 @@ namespace ServerFlex.API.Entities
         /// <summary>
         /// Gets or sets the name of the Region where the new server should be deployed.
         /// </summary>
-        [JsonProperty("region")]
+        [JsonProperty("regionName")]
         public string RegionName { get; set; }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace ServerFlex.API.Entities
 {
@@ -18,12 +19,6 @@ namespace ServerFlex.API.Entities
         public bool IsFreeTrialEligible { get; set; }
 
         /// <summary>
-        /// Gets or sets the Plan's unique name.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// Gets or sets the pricing for the Plan.
         /// </summary>
         [JsonProperty("pricing")]
@@ -34,6 +29,12 @@ namespace ServerFlex.API.Entities
         /// </summary>
         [JsonProperty("resources")]
         public ServerPlanResourcesEntity Resources { get; set; }
+
+        /// <summary>
+        /// Gets or sets the plan's UUID.
+        /// </summary>
+        [JsonProperty("uuid")]
+        public Guid UUID { get; set; }
         #endregion
     }
 }
