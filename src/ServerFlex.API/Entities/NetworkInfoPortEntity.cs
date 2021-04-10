@@ -6,7 +6,7 @@ namespace ServerFlex.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the port name.
+        /// Gets or sets the name of the port.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -18,7 +18,7 @@ namespace ServerFlex.API.Entities
         public int Port { get; set; }
 
         /// <summary>
-        /// Gets or sets the port protocol.
+        /// Gets or sets the protocol.
         /// </summary>
         [JsonProperty("protocol")]
         public string Protocol { get; set; }

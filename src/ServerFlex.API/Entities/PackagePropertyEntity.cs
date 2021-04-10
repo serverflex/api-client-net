@@ -2,7 +2,7 @@
 
 namespace ServerFlex.API.Entities
 {
-    public class ServerPropertyEntity
+    public class PackagePropertyEntity
     {
         #region Properties
         /// <summary>
@@ -10,7 +10,7 @@ namespace ServerFlex.API.Entities
         /// </summary>
         [JsonProperty("acceptedValues")]
         public AcceptedValueEntity[] AcceptedValues { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the category name, if any.
         /// </summary>
@@ -42,7 +42,7 @@ namespace ServerFlex.API.Entities
         public object Value { get; set; }
 
         /// <summary>
-        /// Gets or sets the value type. See <see cref="Schema.ValueType" />.
+        /// Gets or sets the value type.
         /// </summary>
         [JsonProperty("valueType")]
         public string ValueType { get; set; }

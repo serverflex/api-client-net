@@ -12,7 +12,7 @@ namespace ServerFlex.API.Entities
         public int Online { get; set; }
 
         /// <summary>
-        /// Gets or sets the total number of slots available on the server, occupied or free.
+        /// Gets or sets the total number of slots.
         /// </summary>
         [JsonProperty("totalSlots")]
         public int TotalSlots { get; set; }

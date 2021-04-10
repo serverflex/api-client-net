@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace ServerFlex.API.Entities
@@ -20,16 +19,22 @@ namespace ServerFlex.API.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the server Package to deploy to the new server.
+        /// Gets or sets the name of the package to deploy.
         /// </summary>
         [JsonProperty("packageName")]
         public string PackageName { get; set; }
 
         /// <summary>
-        /// Gets or sets the UUID of the server Plan that should be used for the new server.
+        /// Gets or sets the name of the plan to use for the server.
         /// </summary>
-        [JsonProperty("planUuid")]
-        public Guid PlanUUID { get; set; }
+        [JsonProperty("planName")]
+        public string PlanName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the runtimes that should be used for this Crate.
+        /// </summary>
+        [JsonProperty("runtimes")]
+        public string[] Runtimes { get; set; }
 
         /// <summary>
         /// Gets or sets any properties required to deploy the server.
@@ -38,22 +43,10 @@ namespace ServerFlex.API.Entities
         public Dictionary<string, object> Properties { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the Region where the new server should be deployed.
+        /// Gets or sets the name of the region where the server should be deployed.
         /// </summary>
         [JsonProperty("regionName")]
         public string RegionName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the runtimes that should be used for the new server.
-        /// </summary>
-        [JsonProperty("runtimes")]
-        public string[] Runtimes { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether to deploy the server using your free trial. The deployment request will fail if your account does not have a free trial available for the specified game.
-        /// </summary>
-        [JsonProperty("useTrial")]
-        public bool UseTrial { get; set; }
         #endregion
     }
 }

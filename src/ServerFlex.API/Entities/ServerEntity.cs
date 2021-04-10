@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ServerFlex.API.Schema;
 using System;
 
 namespace ServerFlex.API.Entities
@@ -9,23 +10,23 @@ namespace ServerFlex.API.Entities
         /// <summary>
         /// Gets or sets the billing type.
         /// </summary>
-        [JsonProperty("bilingType")]
+        [JsonProperty("billingType")]
         public string BillingType { get; set; }
 
         /// <summary>
-        /// Gets or sets the time that the server was created.
+        /// Gets or sets the time created.
         /// </summary>
         [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the locked state for this server.
+        /// Gets or sets the locked state for this Crate.
         /// </summary>
         [JsonProperty("locked")]
-        public ServerLockInfoEntity Locked { get; set; }
+        public LockInfoEntity Locked { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the server.
+        /// Gets or sets the name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -37,43 +38,43 @@ namespace ServerFlex.API.Entities
         public NetworkInfoEntity Network { get; set; }
 
         /// <summary>
-        /// Gets or sets the server's server Package.
+        /// Gets or sets the package.
         /// </summary>
         [JsonProperty("package")]
         public ServerPackageEntity Package { get; set; }
 
         /// <summary>
-        /// Gets or sets the current user's permission level on this server.
+        /// Gets or sets the current users permission level on this server.
         /// </summary>
         [JsonProperty("permission")]
         public string Permission { get; set; }
 
         /// <summary>
-        /// Gets or sets the server's server Plan.
+        /// Gets or sets the plan.
         /// </summary>
         [JsonProperty("plan")]
         public ServerPlanEntity Plan { get; set; }
 
         /// <summary>
-        /// Gets or sets the Region where the server is deployed.
+        /// Gets or sets the region.
         /// </summary>
         [JsonProperty("region")]
         public RegionEntity Region { get; set; }
 
         /// <summary>
-        /// Gets or sets the server Runtimes running on this server.
+        /// Gets or sets the runtimes running on this server.
         /// </summary>
-        [JsonProperty("runtimes")]
+        [JsonProperty("runtime")]
         public ServerRuntimeEntity[] Runtimes { get; set; }
 
         /// <summary>
-        /// Gets or sets the server's current state.
+        /// Gets or sets the current state. <see cref="ServerState" />.
         /// </summary>
         [JsonProperty("state")]
         public string State { get; set; }
 
         /// <summary>
-        /// Gets or sets the server's UUID.
+        /// Gets or sets the UUID.
         /// </summary>
         [JsonProperty("uuid")]
         public Guid UUID { get; set; }

@@ -11,24 +11,19 @@ namespace ServerFlex.API
         IAccountOperations Accounts { get; }
 
         /// <summary>
-        /// Gets the API operations for Regions.
+        /// Gets the API operations for server packages.
         /// </summary>
-        IRegionOperations Regions { get; }
+        IPackageOperations Packages { get; }
 
         /// <summary>
-        /// Gets the API operations for server Packages.
+        /// Gets the API operations for regions.
         /// </summary>
-        IServerPackageOperations ServerPackages { get; }
+        IRegionOperations Regions { get; }
 
         /// <summary>
         /// Gets the API operations for servers.
         /// </summary>
         IServerOperations Servers { get; }
-
-        /// <summary>
-        /// Gets the API operations for server settings.
-        /// </summary>
-        IServerPropertyOperations ServerProperties { get; }
 
         /// <summary>
         /// Gets the API operations for server sharing.

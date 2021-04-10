@@ -7,10 +7,9 @@ namespace ServerFlex.API
     {
         #region Fields
         private readonly IAccountOperations _accountOperations;
+        private readonly IPackageOperations _packageOperations;
         private readonly IRegionOperations _regionOperations;
         private readonly IServerOperations _serverOperations;
-        private readonly IServerPackageOperations _serverPackageOperations;
-        private readonly IServerPropertyOperations _serverPropertyOperations;
         private readonly IServerSharingOperations _serverSharingOperations;
         #endregion
 
@@ -21,24 +20,19 @@ namespace ServerFlex.API
         public virtual IAccountOperations Accounts => _accountOperations;
 
         /// <summary>
-        /// Gets the API operations for Regions.
+        /// Gets the API operations for server packages.
         /// </summary>
-        public virtual IRegionOperations Regions => _regionOperations;
+        public virtual IPackageOperations Packages => _packageOperations;
 
         /// <summary>
-        /// Gets the API operations for server Packages.
+        /// Gets the API operations for regions.
         /// </summary>
-        public virtual IServerPackageOperations ServerPackages => _serverPackageOperations;
+        public virtual IRegionOperations Regions => _regionOperations;
 
         /// <summary>
         /// Gets the API operations for servers.
         /// </summary>
         public virtual IServerOperations Servers => _serverOperations;
-
-        /// <summary>
-        /// Gets the API operations for server properties.
-        /// </summary>
-        public virtual IServerPropertyOperations ServerProperties => _serverPropertyOperations;
 
         /// <summary>
         /// Gets the API operations for server sharing.
@@ -52,6 +46,11 @@ namespace ServerFlex.API
             return new AccountOperations(this);
         }
 
+        protected virtual IPackageOperations ConstructPackageOpertaions()
+        {
+            return new PackageOperations(this);
+        }
+
         protected virtual IRegionOperations ConstructRegionOpertaions()
         {
             return new RegionOperations(this);
@@ -60,16 +59,6 @@ namespace ServerFlex.API
         protected virtual IServerOperations ConstructServerOpertaions()
         {
             return new ServerOperations(this);
-        }
-
-        protected virtual IServerPackageOperations ConstructServerPackageOpertaions()
-        {
-            return new ServerPackageOperations(this);
-        }
-
-        protected virtual IServerPropertyOperations ConstructServerPropertyOperations()
-        {
-            return new ServerPropertyOperations(this);
         }
 
         protected virtual IServerSharingOperations ConstructServerSharingOperations()
@@ -89,8 +78,7 @@ namespace ServerFlex.API
             _accountOperations = ConstructAccountOpertaions();
             _regionOperations = ConstructRegionOpertaions();
             _serverOperations = ConstructServerOpertaions();
-            _serverPackageOperations = ConstructServerPackageOpertaions();
-            _serverPropertyOperations = ConstructServerPropertyOperations();
+            _packageOperations = ConstructPackageOpertaions();
             _serverSharingOperations = ConstructServerSharingOperations();
         }
         #endregion

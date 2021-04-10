@@ -1,7 +1,6 @@
-﻿using ServerFlex.API.Authentication;
+﻿using Newtonsoft.Json;
+using ServerFlex.API.Authentication;
 using ServerFlex.API.Entities;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -74,26 +73,18 @@ namespace ServerFlex.API
 
             cancellationToken.ThrowIfCancellationRequested();
 
-            string error;
-            ApiError[] errors;
+            ApiError error;
 
             try
             {
-                var obj = JObject.Parse(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
-
-                errors = JsonConvert.DeserializeObject<ApiError[]>(obj["errors"].ToString());
-
-                if (errors.Length > 1)
-                    error = $"{errors.Length} errors occurred.";
-                else
-                    error = string.IsNullOrWhiteSpace(errors[0].Message) ? "Unspecified error" : errors[0].Message;
+                error = JsonConvert.DeserializeObject<ApiError>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
             catch (Exception)
             {
                 throw ApiException.InvalidServerResponse(response);
             }
 
-            throw new ApiException(error, response, errors);
+            throw new ApiException("An API exception occurred.", response, error);
         }
 
         /// <summary>
@@ -128,7 +119,7 @@ namespace ServerFlex.API
                     return response;
                 }
                 catch (ApiException e)
-                    when (e.StatusCode == HttpStatusCode.Unauthorized && !_hasReauthorized)
+                    when (e.ResponseMessage.StatusCode == HttpStatusCode.Unauthorized && !_hasReauthorized)
                 {
                     var retry = await Authentication.ReauthorizeAsync(this).ConfigureAwait(false);
 
@@ -144,7 +135,7 @@ namespace ServerFlex.API
                         throw;
                 }
                 catch (ApiException e)
-                    when (e.StatusCode == HttpStatusCode.BadGateway && i < RetryCount - 1)
+                    when (e.ResponseMessage.StatusCode == HttpStatusCode.BadGateway && i < RetryCount - 1)
                 {
                     await Task.Delay(RetryDelay).ConfigureAwait(false);
 

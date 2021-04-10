@@ -31,7 +31,7 @@ namespace Example.ServerDeployment
             Console.WriteLine($"Hello, {user.GivenName}! Let's deploy a Crate!");
 
             // Get all available server Packages.
-            var allServerPackages = await apiClient.ServerPackages.ListAllServerPackagesAsync().ConfigureAwait(false);
+            var allServerPackages = await apiClient.Packages.ListAllPackagesAsync().ConfigureAwait(false);
 
             // We want to deploy a Minecraft server.
             var minecraftServerPackage = allServerPackages.FirstOrDefault(a => a.Name.Equals("minecraft"));

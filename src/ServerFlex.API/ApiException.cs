@@ -1,62 +1,47 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 
 namespace ServerFlex.API
 {
     public sealed class ApiException : Exception
     {
-        #region Fields
-        private ApiError[] _errors;
-        #endregion
-
         #region Properties
         /// <summary>
         /// Gets the relevant errors, or empty.
         /// </summary>
-        public ApiError[] Errors => _errors ?? Array.Empty<ApiError>();
+        public ApiError Error { get; }
 
         /// <summary>
         /// Gets the response message that generated the exception, if any.
         /// </summary>
         public HttpResponseMessage ResponseMessage { get; private set; }
-
-        /// <summary>
-        /// Gets the status code of the response that generated the exception, if any.
-        /// </summary>
-        public HttpStatusCode StatusCode => ResponseMessage?.StatusCode ?? 0;
         #endregion
 
         #region Constructors
         public ApiException()
-            : base()
+            : this(null)
         {
         }
 
         public ApiException(string message)
-            : base(message)
+            : this(message, null)
         {
         }
 
         public ApiException(string message, Exception innerException)
-            : base(message, innerException)
+            : this(message, innerException, null, null)
         {
         }
 
-        public ApiException(string message, HttpResponseMessage responseMessage, params ApiError[] errors)
-            : base(message)
-            => Initiailize(responseMessage, errors);
-
-        public ApiException(string message, Exception innerException, HttpResponseMessage responseMessage, params ApiError[] errors)
-            : base(message, innerException)
-            => Initiailize(responseMessage, errors);
-        #endregion
-
-        #region Private Methods
-        private void Initiailize(HttpResponseMessage responseMessage, ApiError[] errors)
+        public ApiException(string message, HttpResponseMessage responseMessage, ApiError error)
+            : this(message, null, responseMessage, error)
         {
-            _errors = errors;
+        }
 
+        public ApiException(string message, Exception innerException, HttpResponseMessage responseMessage, ApiError error)
+            : base(message, innerException)
+        {
+            Error = error;
             ResponseMessage = responseMessage;
         }
         #endregion
@@ -67,7 +52,9 @@ namespace ServerFlex.API
         /// </summary>
         /// <param name="responseMessage">The response that generated the exception.</param>
         internal static ApiException InvalidServerResponse(HttpResponseMessage responseMessage)
-            => new ApiException($"Invalid server response: {(int)responseMessage.StatusCode} {responseMessage.StatusCode}.", responseMessage);
+        {
+            return new ApiException($"Invalid server response: {(int)responseMessage.StatusCode} {responseMessage.StatusCode}.", responseMessage, null);
+        }
         #endregion
     }
 }

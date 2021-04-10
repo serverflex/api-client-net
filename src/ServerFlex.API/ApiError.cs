@@ -6,21 +6,24 @@ namespace ServerFlex.API
     {
         #region Properties
         /// <summary>
-        /// Gets the error code.
+        /// Gets the error.
         /// </summary>
         [JsonProperty("error")]
-        public string Code { get; }
+        public string Error { get; }
 
         /// <summary>
-        /// Gets the error message.
+        /// Gets the errornous field, if any.
         /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; }
+        [JsonProperty("field")]
+        public string Field { get; }
         #endregion
 
         #region Constructors
         public ApiError(string code, string message)
-            => (Code, Message) = (code, message);
+        {
+            Error = code;
+            Field = message;
+        }
         #endregion
     }
 }

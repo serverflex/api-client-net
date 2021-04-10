@@ -9,7 +9,7 @@ namespace ServerFlex.API.Entities
         /// Gets or sets the amount of currency.
         /// </summary>
         [JsonProperty("amount")]
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
 
         /// <summary>
         /// Gets or sets the currency code, in ISO 4217 format.

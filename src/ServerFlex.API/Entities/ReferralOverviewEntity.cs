@@ -21,7 +21,7 @@ namespace ServerFlex.API.Entities
         /// Gets or sets the total earnings from referrals.
         /// </summary>
         [JsonProperty("earnings")]
-        public double Earnings { get; set; }
+        public decimal Earnings { get; set; }
         #endregion
     }
 }

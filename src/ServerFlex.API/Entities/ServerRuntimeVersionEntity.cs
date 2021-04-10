@@ -7,19 +7,19 @@ namespace ServerFlex.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the name of the server Runtime version as a human-readable, displayable string.
+        /// Gets or sets the version display name.
         /// </summary>
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the metadata, if any.
+        /// Gets or sets the version metadata.
         /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the server Runtime version.
+        /// Gets or sets the version name.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
