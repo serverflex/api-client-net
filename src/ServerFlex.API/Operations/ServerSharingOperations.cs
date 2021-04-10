@@ -28,7 +28,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TUserSharingEntity> AddServerUserSharingAsync<TUserSharingEntity>(Guid serverUuid, UserSharingNewEntity newUser, CancellationToken cancellationToken = default)
             where TUserSharingEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<UserSharingNewEntity, TUserSharingEntity>(HttpMethod.Post, $"server/{serverUuid}/sharing/add", newUser, cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<UserSharingNewEntity, TUserSharingEntity>(HttpMethod.Post, $"server/{serverUuid}/sharing/new", newUser, cancellationToken);
         }
 
         /// <summary>
@@ -67,10 +67,10 @@ namespace ServerFlex.API.Operations
         /// <summary>
         /// Get the user sharing for a server.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the server to get sharing for.</param>
-        public virtual Task<UserSharingEntity[]> ListAllServerUserSharingAsync(Guid crateUuid, CancellationToken cancellationToken = default)
+        /// <param name="serverUuid">The UUID of the server to get sharing for.</param>
+        public virtual Task<UserSharingEntity[]> ListAllServerUserSharingAsync(Guid serverUuid, CancellationToken cancellationToken = default)
         {
-            return ((IServerSharingOperations)this).ListAllServerUserSharingAsync<UserSharingEntity>(crateUuid, cancellationToken);
+            return ((IServerSharingOperations)this).ListAllServerUserSharingAsync<UserSharingEntity>(serverUuid, cancellationToken);
         }
 
         /// <summary>

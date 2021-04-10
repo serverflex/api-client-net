@@ -53,10 +53,10 @@ namespace ServerFlex.API.Operations
         /// </summary>
         /// <param name="serverUuid">The UUID of the server to edit.</param>
         /// <param name="changes">The changes to make to the server.</param>
-        public virtual Task<TCrateEntity> EditServerAsync<TCrateEntity>(Guid serverUuid, ServerEditEntity changes, CancellationToken cancellationToken = default)
-            where TCrateEntity : class
+        public virtual Task<TServerEntity> EditServerAsync<TServerEntity>(Guid serverUuid, ServerEditEntity changes, CancellationToken cancellationToken = default)
+            where TServerEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<ServerEditEntity, TCrateEntity>(HttpMethod.Post, $"server/{serverUuid}", changes, cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<ServerEditEntity, TServerEntity>(HttpMethod.Post, $"server/{serverUuid}/edit", changes, cancellationToken);
         }
 
         /// <summary>
@@ -148,10 +148,10 @@ namespace ServerFlex.API.Operations
         /// Restart a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
         /// <param name="serverUuid">The UUID of the server to restart.</param>
-        public virtual Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
+        public virtual Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
             where TOperationEntity : class
         {
-            return ((IServerOperations)this).RestartServerAsync<TOperationEntity>(crateUuid, TimeSpan.FromMinutes(2), cancellationToken);
+            return ((IServerOperations)this).RestartServerAsync<TOperationEntity>(serverUuid, TimeSpan.FromMinutes(2), cancellationToken);
         }
 
         /// <summary>
@@ -159,9 +159,9 @@ namespace ServerFlex.API.Operations
         /// </summary>
         /// <param name="serverUuid">The UUID of the server to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        public virtual Task<OperationEntity> RestartServerAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+        public virtual Task<OperationEntity> RestartServerAsync(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
         {
-            return ((IServerOperations)this).RestartServerAsync<OperationEntity>(crateUuid, timeout, cancellationToken);
+            return ((IServerOperations)this).RestartServerAsync<OperationEntity>(serverUuid, timeout, cancellationToken);
         }
 
         /// <summary>
@@ -169,10 +169,10 @@ namespace ServerFlex.API.Operations
         /// </summary>
         /// <param name="serverUuid">The UUID of the server to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        public virtual Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+        public virtual Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             where TOperationEntity : class
         {
-            return RequestWithTimeoutAsync<TOperationEntity>(timeout, $"server/{crateUuid}/restart", cancellationToken);
+            return RequestWithTimeoutAsync<TOperationEntity>(timeout, $"server/{serverUuid}/restart", cancellationToken);
         }
 
         /// <summary>

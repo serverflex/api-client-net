@@ -9,180 +9,180 @@ namespace ServerFlex.API.Operations
     {
         #region Public Methods
         /// <summary>
-        /// Delete a Crate from your account.
+        /// Delete a server from your account.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to delete.</param>
-        Task DeleteServerAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to delete.</param>
+        Task DeleteServerAsync(Guid serverUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deploy a new Crate to your account.
+        /// Deploy a new server to your account.
         /// </summary>
-        /// <param name="configuration">The configuration for the new Crate.</param>
+        /// <param name="configuration">The configuration for the new server.</param>
         Task<ServerEntity> DeployServerAsync(ServerDeployEntity configuration, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deploy a new Crate to your account.
+        /// Deploy a new server to your account.
         /// </summary>
-        /// <param name="configuration">The configuration for the new Crate.</param>
-        Task<TCrateEntity> DeployServerAsync<TCrateEntity>(ServerDeployEntity configuration, CancellationToken cancellationToken = default)
-            where TCrateEntity : class;
+        /// <param name="configuration">The configuration for the new server.</param>
+        Task<TServerEntity> DeployServerAsync<TServerEntity>(ServerDeployEntity configuration, CancellationToken cancellationToken = default)
+            where TServerEntity : class;
 
         /// <summary>
-        /// Edit a Crate within your account.
+        /// Edit a server within your account.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to edit.</param>
-        /// <param name="changes">The changes to make to the Crate.</param>
-        Task<ServerEntity> EditServerAsync(Guid crateUuid, ServerEditEntity changes, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to edit.</param>
+        /// <param name="changes">The changes to make to the server.</param>
+        Task<ServerEntity> EditServerAsync(Guid serverUuid, ServerEditEntity changes, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Edit a Crate within your account.
+        /// Edit a server within your account.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to edit.</param>
-        /// <param name="changes">The changes to make to the Crate.</param>
-        Task<TCrateEntity> EditServerAsync<TCrateEntity>(Guid crateUuid, ServerEditEntity changes, CancellationToken cancellationToken = default)
-            where TCrateEntity : class;
+        /// <param name="serverUuid">The UUID of the server to edit.</param>
+        /// <param name="changes">The changes to make to the server.</param>
+        Task<TServerEntity> EditServerAsync<TServerEntity>(Guid serverUuid, ServerEditEntity changes, CancellationToken cancellationToken = default)
+            where TServerEntity : class;
 
         /// <summary>
-        /// Get a Crate.
+        /// Get a server.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate.</param>
-        Task<ServerEntity> GetServerAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server.</param>
+        Task<ServerEntity> GetServerAsync(Guid serverUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a Crate.
+        /// Get a server.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate.</param>
-        Task<TCrateEntity> GetServerAsync<TCrateEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
-            where TCrateEntity : class;
+        /// <param name="serverUuid">The UUID of the server.</param>
+        Task<TServerEntity> GetServerAsync<TServerEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
+            where TServerEntity : class;
 
         /// <summary>
-        /// Get the number of players that are currently connected to a Crate.
+        /// Get the number of players that are currently connected to a server.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the crate to get the active player count for.</param>
-        Task<ServerPlayersEntity> GetPlayersAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to get the active player count for.</param>
+        Task<ServerPlayersEntity> GetPlayersAsync(Guid serverUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get the number of players that are currently connected to a Crate.
+        /// Get the number of players that are currently connected to a server.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the crate to get the active player count for.</param>
-        Task<TCratePlayersEntity> GetPlayersAsync<TCratePlayersEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
-            where TCratePlayersEntity : class;
+        /// <param name="serverUuid">The UUID of the server to get the active player count for.</param>
+        Task<TServerPlayersEntity> GetPlayersAsync<TServerPlayersEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
+            where TServerPlayersEntity : class;
 
         /// <summary>
-        /// Get all of the Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
+        /// Get all of the servers in your account in ascending order (oldest servers at the top).
         /// </summary>
         Task<ServerEntity[]> ListAllServersAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get all of the Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
+        /// Get all of the servers in your account in ascending order (oldest servers at the top).
         /// </summary>
-        Task<TCrateEntity[]> ListAllServersAsync<TCrateEntity>(CancellationToken cancellationToken = default)
-            where TCrateEntity : class;
+        Task<TServerEntity[]> ListAllServersAsync<TServerEntity>(CancellationToken cancellationToken = default)
+            where TServerEntity : class;
 
         /// <summary>
-        /// Get a page of Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
+        /// Get a page of server in your account in ascending order (oldest servers at the top).
         /// </summary>
-        /// <param name="limit">The maximum number of Crates that can be returned. Minimum: 1, maximum: 50.</param>
+        /// <param name="limit">The maximum number of servers that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         Task<ResultResponseEntity<ServerEntity>> ListServersAsync(int limit = 25, int page = 1, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a page of Crates in your account. The returned Crates are sorted by date created in ascending order (oldest Crates at the top).
+        /// Get a page of server in your account in ascending order (oldest servers at the top).
         /// </summary>
-        /// <param name="limit">The maximum number of Crates that can be returned. Minimum: 1, maximum: 50.</param>
+        /// <param name="limit">The maximum number of servers that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
-        Task<ResultResponseEntity<TCrateEntity>> ListServersAsync<TCrateEntity>(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
-            where TCrateEntity : class;
+        Task<ResultResponseEntity<TServerEntity>> ListServersAsync<TServerEntity>(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
+            where TServerEntity : class;
 
         /// <summary>
-        /// Restart a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Restart a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
-        Task<OperationEntity> RestartServerAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to restart.</param>
+        Task<OperationEntity> RestartServerAsync(Guid serverUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Restart a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Restart a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
-        Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
+        /// <param name="serverUuid">The UUID of the server to restart.</param>
+        Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
             where TOperationEntity : class;
 
         /// <summary>
-        /// Restart a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Restart a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
+        /// <param name="serverUuid">The UUID of the server to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        Task<OperationEntity> RestartServerAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
+        Task<OperationEntity> RestartServerAsync(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Restart a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Restart a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to restart.</param>
+        /// <param name="serverUuid">The UUID of the server to restart.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+        Task<TOperationEntity> RestartServerAsync<TOperationEntity>(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             where TOperationEntity : class;
 
         /// <summary>
-        /// Input a command into the console of a Crate.
+        /// Input a command into the console of a server.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to send the command to.</param>
-        /// <param name="command">The command to enter into the Crate's console.</param>
-        Task SendCommandAsync(Guid crateUuid, ServerConsoleInputEntity command, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to send the command to.</param>
+        /// <param name="command">The command to enter into the server's console.</param>
+        Task SendCommandAsync(Guid serverUuid, ServerConsoleInputEntity command, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Start a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Start a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to start.</param>
-        Task<OperationEntity> StartServerAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to start.</param>
+        Task<OperationEntity> StartServerAsync(Guid serverUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Start a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Start a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to start.</param>
-        Task<TOperationEntity> StartServerAsync<TOperationEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
+        /// <param name="serverUuid">The UUID of the server to start.</param>
+        Task<TOperationEntity> StartServerAsync<TOperationEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
             where TOperationEntity : class;
 
         /// <summary>
-        /// Start a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Start a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to start.</param>
+        /// <param name="serverUuid">The UUID of the server to start.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        Task<OperationEntity> StartServerAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
+        Task<OperationEntity> StartServerAsync(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Start a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Start a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to start.</param>
+        /// <param name="serverUuid">The UUID of the server to start.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        Task<TOperationEntity> StartServerAsync<TOperationEntity>(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+        Task<TOperationEntity> StartServerAsync<TOperationEntity>(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             where TOperationEntity : class;
 
         /// <summary>
-        /// Stop a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Stop a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
-        Task<OperationEntity> StopServerAsync(Guid crateUuid, CancellationToken cancellationToken = default);
+        /// <param name="serverUuid">The UUID of the server to stop.</param>
+        Task<OperationEntity> StopServerAsync(Guid serverUuid, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Stop a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Stop a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
-        Task<TOperationEntity> StopServerAsync<TOperationEntity>(Guid crateUuid, CancellationToken cancellationToken = default)
+        /// <param name="serverUuid">The UUID of the server to stop.</param>
+        Task<TOperationEntity> StopServerAsync<TOperationEntity>(Guid serverUuid, CancellationToken cancellationToken = default)
             where TOperationEntity : class;
 
         /// <summary>
-        /// Stop a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Stop a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        /// <param name="serverUuid">The UUID of the server to stop.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        Task<OperationEntity> StopServerAsync(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
+        Task<OperationEntity> StopServerAsync(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Stop a Crate. This process is asynchronous so the Crate may not be available immediately.
+        /// Stop a server. This process is asynchronous so the server may not be available immediately.
         /// </summary>
-        /// <param name="crateUuid">The UUID of the Crate to stop.</param>
+        /// <param name="serverUuid">The UUID of the server to stop.</param>
         /// <param name="timeout">The timeout to wait for the call to complete. Minimum: 1 second, maximum: 2 minutes.</param>
-        Task<TOperationEntity> StopServerAsync<TOperationEntity>(Guid crateUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
+        Task<TOperationEntity> StopServerAsync<TOperationEntity>(Guid serverUuid, TimeSpan timeout, CancellationToken cancellationToken = default)
             where TOperationEntity : class;
         #endregion
     }

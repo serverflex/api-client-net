@@ -8,40 +8,40 @@ namespace ServerFlex.API.Operations
     {
         #region Public Methods
         /// <summary>
-        /// Get a Region.
+        /// Get a region.
         /// </summary>
-        /// <param name="regionName">The name of the Region.</param>
+        /// <param name="regionName">The name of the region.</param>
         Task<RegionEntity> GetRegionAsync(string regionName, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a Region.
+        /// Get a region.
         /// </summary>
-        /// <param name="regionName">The name of the Region.</param>
+        /// <param name="regionName">The name of the region.</param>
         Task<TRegionEntity> GetRegionAsync<TRegionEntity>(string regionName, CancellationToken cancellationToken = default)
             where TRegionEntity : class;
 
         /// <summary>
-        /// Get all available Regions.
+        /// Get all available regions.
         /// </summary>
         Task<RegionEntity[]> ListAllRegionsAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get all available Regions.
+        /// Get all available regions.
         /// </summary>
         Task<TRegionEntity[]> ListAllRegionsAsync<TRegionEntity>(CancellationToken cancellationToken = default)
             where TRegionEntity : class;
 
         /// <summary>
-        /// Get a page of Regions.
+        /// Get a page of regions.
         /// </summary>
-        /// <param name="limit">The maximum number of Regions that can be returned. Minimum: 1, maximum: 50.</param>
+        /// <param name="limit">The maximum number of regions that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         Task<ResultResponseEntity<RegionEntity>> ListRegionsAsync(int limit = 25, int page = 1, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a page of Regions.
+        /// Get a page of regions.
         /// </summary>
-        /// <param name="limit">The maximum number of Regions that can be returned. Minimum: 1, maximum: 50.</param>
+        /// <param name="limit">The maximum number of regions that can be returned. Minimum: 1, maximum: 50.</param>
         /// <param name="page">The cursor for the next batch of results. Minimum: 1.</param>
         Task<ResultResponseEntity<TRegionEntity>> ListRegionsAsync<TRegionEntity>(int limit = 25, int page = 1, CancellationToken cancellationToken = default)
             where TRegionEntity : class;
