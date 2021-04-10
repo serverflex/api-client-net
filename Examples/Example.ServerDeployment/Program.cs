@@ -28,32 +28,32 @@ namespace Example.ServerDeployment
             // Get the current user so we can say hello :)
             var user = await apiClient.Accounts.GetUserAsync().ConfigureAwait(false);
 
-            Console.WriteLine($"Hello, {user.GivenName}! Let's deploy a Crate!");
+            Console.WriteLine($"Hello, {user.GivenName}! Let's deploy a server!");
 
-            // Get all available server Packages.
-            var allServerPackages = await apiClient.Packages.ListAllPackagesAsync().ConfigureAwait(false);
+            // Get all available packages.
+            var allPackages = await apiClient.Packages.ListAllPackagesAsync().ConfigureAwait(false);
 
             // We want to deploy a Minecraft server.
-            var minecraftServerPackage = allServerPackages.FirstOrDefault(a => a.Name.Equals("minecraft"));
+            var minecraftPackage = allPackages.FirstOrDefault(a => a.Name.Equals("minecraft"));
 
-            if (minecraftServerPackage == null)
+            if (minecraftPackage == null)
             {
-                Console.WriteLine("Minecraft server Package was not found :(");
+                Console.WriteLine("Minecraft package was not found :(");
                 return;
             }
 
-            // Get the lowest tier server Plan.
-            var serverPlan = minecraftServerPackage.Plans.OrderBy(p => p.Pricing.CostMonthly).First();
+            // Get the lowest tier plan.
+            var serverPlan = minecraftPackage.Plans.OrderBy(p => p.Pricing.CostMonthly).First();
 
-            // Select a Region to deploy the Crate to.
-            var region = minecraftServerPackage.Regions.First();
+            // Select a region to deploy the server to.
+            var region = minecraftPackage.Regions.First();
 
             var newServerConfig = new ServerDeployEntity
             {
                 BillingType = BillingType.Hourly,
                 Name = $".NET API Client Sample Server",
-                PackageName = minecraftServerPackage.Name,
-                PlanUUID = serverPlan.UUID,
+                PackageName = minecraftPackage.Name,
+                PlanName = serverPlan.Name,
                 Properties = new Dictionary<string, object>
                 {
                     ["eula"] = true
