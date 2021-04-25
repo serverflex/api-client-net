@@ -64,7 +64,7 @@ namespace ServerFlex.API.Entities
         /// <summary>
         /// Gets or sets the runtimes running on this server.
         /// </summary>
-        [JsonProperty("runtime")]
+        [JsonProperty("runtimes")]
         public ServerRuntimeEntity[] Runtimes { get; set; }
 
         /// <summary>
