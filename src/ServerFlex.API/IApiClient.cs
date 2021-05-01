@@ -29,6 +29,11 @@ namespace ServerFlex.API
         /// Gets the API operations for server sharing.
         /// </summary>
         IServerSharingOperations ServerSharing { get; }
+
+        /// <summary>
+        /// Gets the API operations for server statistics.
+        /// </summary>
+        IServerStatisticsOperations ServerStatistics { get; }
         #endregion
     }
 }

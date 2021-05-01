@@ -11,6 +11,7 @@ namespace ServerFlex.API
         private readonly IRegionOperations _regionOperations;
         private readonly IServerOperations _serverOperations;
         private readonly IServerSharingOperations _serverSharingOperations;
+        private readonly IServerStatisticsOperations _serverStatistics;
         #endregion
 
         #region Properties
@@ -38,6 +39,11 @@ namespace ServerFlex.API
         /// Gets the API operations for server sharing.
         /// </summary>
         public virtual IServerSharingOperations ServerSharing => _serverSharingOperations;
+
+        /// <summary>
+        /// Gets the API operations for server statistics.
+        /// </summary>
+        public virtual IServerStatisticsOperations ServerStatistics => _serverStatistics;
         #endregion
 
         #region Protected Methods
@@ -65,6 +71,11 @@ namespace ServerFlex.API
         {
             return new ServerSharingOperations(this);
         }
+
+        protected virtual IServerStatisticsOperations ConstructServerStatisticsOperations()
+        {
+            return new ServerStatisticsOperations(this);
+        }
         #endregion
 
         #region Constructors
@@ -80,6 +91,7 @@ namespace ServerFlex.API
             _serverOperations = ConstructServerOpertaions();
             _packageOperations = ConstructPackageOpertaions();
             _serverSharingOperations = ConstructServerSharingOperations();
+            _serverStatistics = ConstructServerStatisticsOperations();
         }
         #endregion
     }
