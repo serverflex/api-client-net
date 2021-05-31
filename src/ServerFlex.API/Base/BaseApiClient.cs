@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ServerFlex.API.Authentication;
 using ServerFlex.API.Entities;
 using ServerFlex.API.Events;
@@ -305,7 +304,7 @@ namespace ServerFlex.API.Base
         /// </summary>
         /// <param name="baseApiUri">The base URI to use for the API, or null for default.</param>
         /// <param name="baseEventApiUri">The base URI to use for the event API, or null for default.</param>
-        protected BaseApiClient(Uri baseApiUri = null, Uri baseEventApiUri = null)
+        protected BaseApiClient(Uri baseApiUri, Uri baseEventApiUri)
         {
             BaseApiUri = baseApiUri ?? DefaultBaseApiUri;
             BaseEventApiUri = baseEventApiUri ?? DefaultBaseEventApiUri;
