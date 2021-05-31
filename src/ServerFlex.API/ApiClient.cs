@@ -1,4 +1,5 @@
 ﻿using ServerFlex.API.Operations;
+using ServerFlex.API.Operations.Base;
 using System;
 
 namespace ServerFlex.API
@@ -7,6 +8,7 @@ namespace ServerFlex.API
     {
         #region Fields
         private readonly IAccountOperations _accountOperations;
+        private readonly IEventOperations _eventOperations;
         private readonly IPackageOperations _packageOperations;
         private readonly IRegionOperations _regionOperations;
         private readonly IServerOperations _serverOperations;
@@ -19,6 +21,11 @@ namespace ServerFlex.API
         /// Gets the API operations for accounts.
         /// </summary>
         public virtual IAccountOperations Accounts => _accountOperations;
+
+        /// <summary>
+        /// Gets the API operations for events.
+        /// </summary>
+        public virtual IEventOperations Events => _eventOperations;
 
         /// <summary>
         /// Gets the API operations for server packages.
@@ -50,6 +57,11 @@ namespace ServerFlex.API
         protected virtual IAccountOperations ConstructAccountOpertaions()
         {
             return new AccountOperations(this);
+        }
+
+        protected virtual IEventOperations ConstructEventOperations()
+        {
+            return new EventOperations(this);
         }
 
         protected virtual IPackageOperations ConstructPackageOpertaions()
@@ -87,6 +99,7 @@ namespace ServerFlex.API
             : base(baseApiUri)
         {
             _accountOperations = ConstructAccountOpertaions();
+            _eventOperations = ConstructEventOperations();
             _regionOperations = ConstructRegionOpertaions();
             _serverOperations = ConstructServerOpertaions();
             _packageOperations = ConstructPackageOpertaions();

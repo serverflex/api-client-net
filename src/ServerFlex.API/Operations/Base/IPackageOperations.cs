@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ServerFlex.API.Operations
+namespace ServerFlex.API.Operations.Base
 {
     public interface IPackageOperations
     {
