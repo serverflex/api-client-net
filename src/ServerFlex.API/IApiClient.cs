@@ -1,4 +1,4 @@
-﻿using ServerFlex.API.Operations;
+﻿using ServerFlex.API.Operations.Base;
 
 namespace ServerFlex.API
 {
@@ -9,6 +9,11 @@ namespace ServerFlex.API
         /// Gets the API operations for accounts.
         /// </summary>
         IAccountOperations Accounts { get; }
+
+        /// <summary>
+        /// Gets the API operations for events.
+        /// </summary>
+        IEventOperations Events { get; }
 
         /// <summary>
         /// Gets the API operations for server packages.
