@@ -1,4 +1,5 @@
-﻿using ServerFlex.API.Entities;
+﻿using ServerFlex.API.Base;
+using ServerFlex.API.Entities;
 using ServerFlex.API.Operations.Base;
 using System;
 using System.Net.Http;
@@ -28,7 +29,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TSubscriptionEntity> AddSubscriptionAsync<TSubscriptionEntity>(string token, SubscriptionNewEntity subscription, CancellationToken cancellationToken = default)
             where TSubscriptionEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<TSubscriptionEntity>(HttpMethod.Post, $"websockets/subscribe?token={token}", cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<SubscriptionNewEntity, TSubscriptionEntity>(HttpMethod.Post, $"events/subscribe?token={token}", subscription, cancellationToken);
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TSubscriptionEntity> GetSubscriptionAsync<TSubscriptionEntity>(string token, Guid subscriptionUuid, CancellationToken cancellationToken = default)
             where TSubscriptionEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<TSubscriptionEntity>(HttpMethod.Get, $"websockets/{subscriptionUuid}?token={token}", cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<TSubscriptionEntity>(HttpMethod.Get, $"events/{subscriptionUuid}?token={token}", cancellationToken);
         }
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TWebSocketTokenEntity> GetWebSocketTokenAsync<TWebSocketTokenEntity>(CancellationToken cancellationToken = default)
             where TWebSocketTokenEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<TWebSocketTokenEntity>(HttpMethod.Get, "websockets/token", cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<TWebSocketTokenEntity>(HttpMethod.Get, "events/token", cancellationToken);
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace ServerFlex.API.Operations
         /// <param name="subscriptionUuid">The subscription UUID.</param>
         public virtual Task RemoveSubscriptionAsync(string token, Guid subscriptionUuid, CancellationToken cancellationToken = default)
         {
-            return ApiRequestor.RequestAsync(HttpMethod.Post, $"websockets/{subscriptionUuid}/unsubscribe?token={token}", null, cancellationToken);
+            return ApiRequestor.RequestAsync(HttpMethod.Post, $"events/{subscriptionUuid}/unsubscribe?token={token}", null, cancellationToken);
         }
         #endregion
 

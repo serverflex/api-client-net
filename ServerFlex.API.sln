@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ServerDeployment", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ServerPlayers", "examples\Example.ServerPlayers\Example.ServerPlayers.csproj", "{60FB8A5E-928C-4C4B-B73A-C871503D2D3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Events", "Examples\Example.Events\Example.Events.csproj", "{91F0CE40-D3FD-4F99-9A53-3828F018A7C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{60FB8A5E-928C-4C4B-B73A-C871503D2D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60FB8A5E-928C-4C4B-B73A-C871503D2D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60FB8A5E-928C-4C4B-B73A-C871503D2D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F0CE40-D3FD-4F99-9A53-3828F018A7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F0CE40-D3FD-4F99-9A53-3828F018A7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F0CE40-D3FD-4F99-9A53-3828F018A7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F0CE40-D3FD-4F99-9A53-3828F018A7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

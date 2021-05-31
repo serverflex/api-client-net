@@ -1,4 +1,5 @@
-﻿using ServerFlex.API.Operations;
+﻿using ServerFlex.API.Base;
+using ServerFlex.API.Operations;
 using ServerFlex.API.Operations.Base;
 using System;
 
@@ -95,8 +96,9 @@ namespace ServerFlex.API
         /// Creates a new ServerFlex API client with an optional custom base URI.
         /// </summary>
         /// <param name="baseApiUri">The base URI to use for the API, or null for default.</param>
-        public ApiClient(Uri baseApiUri = null)
-            : base(baseApiUri)
+        /// <param name="baseEventApiUri">The base URI to use for the event API, or null for default.</param>
+        public ApiClient(Uri baseApiUri = null, Uri baseEventApiUri = null)
+            : base(baseApiUri, baseEventApiUri)
         {
             _accountOperations = ConstructAccountOpertaions();
             _eventOperations = ConstructEventOperations();
