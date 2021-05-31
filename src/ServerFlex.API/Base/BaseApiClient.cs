@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ServerFlex.API
+namespace ServerFlex.API.Base
 {
     public abstract class BaseApiClient : IApiRequestor
     {

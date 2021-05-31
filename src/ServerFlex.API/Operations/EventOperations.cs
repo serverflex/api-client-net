@@ -1,4 +1,5 @@
-﻿using ServerFlex.API.Entities;
+﻿using ServerFlex.API.Base;
+using ServerFlex.API.Entities;
 using ServerFlex.API.Operations.Base;
 using System;
 using System.Net.Http;

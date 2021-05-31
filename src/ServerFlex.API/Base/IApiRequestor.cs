@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ServerFlex.API
+namespace ServerFlex.API.Base
 {
     public interface IApiRequestor
     {

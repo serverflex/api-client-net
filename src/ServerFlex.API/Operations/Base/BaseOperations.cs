@@ -1,4 +1,6 @@
-﻿namespace ServerFlex.API.Operations.Base
+﻿using ServerFlex.API.Base;
+
+namespace ServerFlex.API.Operations.Base
 {
     public abstract class BaseOperations
     {

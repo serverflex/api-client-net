@@ -1,6 +1,6 @@
 ﻿using ServerFlex.API.Operations.Base;
 
-namespace ServerFlex.API
+namespace ServerFlex.API.Base
 {
     public interface IApiClient
     {
