@@ -1,20 +1,31 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ServerFlex.API.Authentication;
 using ServerFlex.API.Entities;
+using ServerFlex.API.Events;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ServerFlex.API.Base
 {
-    public abstract class BaseApiClient : IApiRequestor
+    public abstract class BaseApiClient : IApiRequestor, IEventApiRequestor
     {
         #region Fields
         private bool _hasReauthorized;
+        private ClientWebSocket _webSocketClient;
+        #endregion
+
+        #region Events
+        public event EventHandler Connected;
+        public event EventHandler Disconnected;
+        public event EventHandler<EventReceivedEventArgs> EventReceived;
         #endregion
 
         #region Properties
@@ -27,6 +38,11 @@ namespace ServerFlex.API.Base
         /// Gets or sets the base URI to use for the API.
         /// </summary>
         public Uri BaseApiUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the base URI to use for the event API.
+        /// </summary>
+        public Uri BaseEventApiUri { get; set; }
 
         /// <summary>
         /// Gets the API client's underlying HTTP client.
@@ -42,6 +58,27 @@ namespace ServerFlex.API.Base
         /// Gets or sets how long to wait between retrying operations. Default value: 3 seconds.
         /// </summary>
         public TimeSpan RetryDelay { get; set; } = TimeSpan.FromSeconds(3);
+
+        /// <summary>
+        /// Gets the API client's underlying WebSocket client.
+        /// </summary>
+        public ClientWebSocket WebSocketClient
+        {
+            get
+            {
+                if (_webSocketClient == null)
+                    _webSocketClient = new ClientWebSocket();
+
+                else if (_webSocketClient.State != WebSocketState.Open)
+                {
+                    _webSocketClient.Dispose();
+
+                    _webSocketClient = new ClientWebSocket();
+                }
+
+                return _webSocketClient;
+            }
+        }
         #endregion
 
         #region REST Methods
@@ -227,20 +264,108 @@ namespace ServerFlex.API.Base
         }
         #endregion
 
+        #region Public Methods
+        /// <summary>
+        /// Connect to the event API via WebSockets.
+        /// </summary>
+        /// <param name="token">Your WebSocket token.</param>
+        public async Task ConnectAsync(string token, CancellationToken cancellationToken = default)
+        {
+            if (WebSocketClient.State != WebSocketState.Open)
+            {
+                await WebSocketClient.ConnectAsync(new Uri($"{BaseEventApiUri}?token={token}"), cancellationToken).ConfigureAwait(false);
+
+                OnConnected(new EventArgs());
+
+                _ = Task.Run(ReadLoopAsync);
+            }
+        }
+        #endregion
+
+        #region Protected Methods
+        protected virtual void OnConnected(EventArgs e)
+        {
+            Connected?.Invoke(this, e);
+        }
+
+        protected virtual void OnDisconnected(EventArgs e)
+        {
+            Disconnected?.Invoke(this, e);
+        }
+
+        protected virtual void OnEventReceived(EventReceivedEventArgs e)
+        {
+            EventReceived?.Invoke(this, e);
+        }
+        #endregion
+
         #region Constructors
         /// <summary>
         /// Creates a new ServerFlex API client with an optional custom base URI.
         /// </summary>
         /// <param name="baseApiUri">The base URI to use for the API, or null for default.</param>
-        protected BaseApiClient(Uri baseApiUri = null)
+        /// <param name="baseEventApiUri">The base URI to use for the event API, or null for default.</param>
+        protected BaseApiClient(Uri baseApiUri = null, Uri baseEventApiUri = null)
         {
             BaseApiUri = baseApiUri ?? DefaultBaseApiUri;
+            BaseEventApiUri = baseEventApiUri ?? DefaultBaseEventApiUri;
 
             HttpClient = new HttpClient();
         }
         #endregion
 
         #region Private Methods
+        private async Task ReadLoopAsync()
+        {
+            var buffer = new byte[8192];
+
+            while (WebSocketClient.State == WebSocketState.Open)
+            {
+                try
+                {
+                    WebSocketReceiveResult message;
+
+                    do
+                    {
+                        message = await WebSocketClient.ReceiveAsync(buffer, default).ConfigureAwait(false);
+                    }
+                    while (!message.EndOfMessage);
+
+                    // If the message type is to close the WebSocket, break the loop to dispose the connection.
+                    if (message.MessageType == WebSocketMessageType.Close)
+                        break;
+
+                    // If the message type is text, try to parse as an event.
+                    else if (message.MessageType == WebSocketMessageType.Text)
+                    {
+                        using var memoryStream = new MemoryStream(buffer);
+                        using var streamReader = new StreamReader(memoryStream, Encoding.UTF8);
+
+                        try
+                        {
+                            var eventEntity = JsonConvert.DeserializeObject<EventEntity>(streamReader.ReadToEnd());
+
+                            OnEventReceived(new EventReceivedEventArgs(eventEntity));
+                        }
+                        catch
+                        {
+                            // Ignore.
+                        }
+                    }
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            // If we're here, the WebSocket has disconnected.
+
+            WebSocketClient.Dispose();
+
+            OnDisconnected(new EventArgs());
+        }
+
         private HttpContent SerializeContent<TContent>(TContent content)
         {
             return new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
@@ -248,7 +373,8 @@ namespace ServerFlex.API.Base
         #endregion
 
         #region Constant Values
-        public static readonly Uri DefaultBaseApiUri = new Uri("https://api.serverflex.io/1.0/");
+        public static readonly Uri DefaultBaseApiUri = new("https://api.serverflex.io/1.0/");
+        public static readonly Uri DefaultBaseEventApiUri = new("wss://api.serverflex.io/1.0/websockets");
         #endregion
     }
 }
