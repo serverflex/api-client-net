@@ -29,7 +29,7 @@ namespace ServerFlex.API.Operations
         public virtual Task<TSubscriptionEntity> AddSubscriptionAsync<TSubscriptionEntity>(string token, SubscriptionNewEntity subscription, CancellationToken cancellationToken = default)
             where TSubscriptionEntity : class
         {
-            return ApiRequestor.RequestJsonSerializedAsync<TSubscriptionEntity>(HttpMethod.Post, $"websockets/subscribe?token={token}", cancellationToken);
+            return ApiRequestor.RequestJsonSerializedAsync<SubscriptionNewEntity, TSubscriptionEntity>(HttpMethod.Post, $"websockets/subscribe?token={token}", subscription, cancellationToken);
         }
 
         /// <summary>

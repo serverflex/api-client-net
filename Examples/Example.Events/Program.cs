@@ -15,7 +15,7 @@ namespace Example.Events
         public static async Task Main()
         {
             // Create ServerFlex API client.
-            var apiClient = new ApiClient
+            var apiClient = new ApiClient(new Uri("https://serverflex.ngrok.io/1.0/"), new Uri("wss://serverflex.ngrok.io/1.0/websockets/"))
             {
                 Authentication = new ApiKeyAuthentication
                 {
@@ -26,7 +26,7 @@ namespace Example.Events
             // List all servers in account.
             var servers = await apiClient.Servers.ListAllServersAsync();
 
-            if (servers.Length == 1)
+            if (servers.Length == 0)
             {
                 Console.WriteLine("Your account does not contain any servers to view events for :(");
                 return;
