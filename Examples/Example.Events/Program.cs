@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace Example.Events
 {
     /// <summary>
-    /// An example program to deploy a new server to your account.
+    /// An example program to monitor events for servers within your account.
     /// </summary>
     public static class Program
     {
         public static async Task Main()
         {
             // Create ServerFlex API client.
-            var apiClient = new ApiClient(new Uri("https://serverflex.ngrok.io/1.0/"), new Uri("wss://serverflex.ngrok.io/1.0/websockets/"))
+            var apiClient = new ApiClient
             {
                 Authentication = new ApiKeyAuthentication
                 {
@@ -53,6 +53,8 @@ namespace Example.Events
                     ResourceType = "server"
                 });
             }
+
+            await apiClient.ConnectAsync(webSocketToken.Token).ConfigureAwait(false);
 
             Console.WriteLine($"Listening for events from {servers.Length} servers!");
             Console.WriteLine();
