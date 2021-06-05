@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 
 namespace ServerFlex.API.Entities
 {
@@ -6,13 +6,9 @@ namespace ServerFlex.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the server UUID.
+        /// Gets or sets the server state. See <see cref="Schema.ServerState" />.
         /// </summary>
-        public Guid ServerUUID { get; set; }
-
-        /// <summary>
-        /// Gets or sets the server state. See <see cref="ServerState" />.
-        /// </summary>
+        [JsonProperty("state")]
         public string State { get; set; }
         #endregion
     }

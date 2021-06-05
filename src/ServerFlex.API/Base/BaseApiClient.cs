@@ -373,7 +373,7 @@ namespace ServerFlex.API.Base
 
         #region Constant Values
         public static readonly Uri DefaultBaseApiUri = new("https://api.serverflex.io/1.0/");
-        public static readonly Uri DefaultBaseEventApiUri = new("wss://api.serverflex.io/1.0/websockets");
+        public static readonly Uri DefaultBaseEventApiUri = new("wss://api.serverflex.io/1.0/events/");
         #endregion
     }
 }

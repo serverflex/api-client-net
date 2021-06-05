@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using Schema_EventType = ServerFlex.API.Schema.EventType;
 
 namespace ServerFlex.API.Entities
 {
@@ -8,7 +9,7 @@ namespace ServerFlex.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the event type.
+        /// Gets or sets the event type. See <see cref="Schema_EventType" />.
         /// </summary>
         [JsonProperty("eventType")]
         public string EventType { get; set; }
@@ -26,7 +27,7 @@ namespace ServerFlex.API.Entities
         public string ResourceID { get; set; }
 
         /// <summary>
-        /// Gets or sets the resource type.
+        /// Gets or sets the resource type. See <see cref="Schema.ResourceType" />.
         /// </summary>
         [JsonProperty("resourceType")]
         public string ResourceType { get; set; }
@@ -43,7 +44,7 @@ namespace ServerFlex.API.Entities
             {
                 payload = EventType switch
                 {
-                    "state" => Payload.ToObject<ServerStateUpdateEventEntity>(),
+                    Schema_EventType.ServerStateUpdate => Payload.ToObject<ServerStateUpdateEventEntity>(),
                     _ => throw new Exception()
                 };
             }
@@ -62,15 +63,16 @@ namespace ServerFlex.API.Entities
         public bool TryParsePayload<T>(out T payload)
             where T : class
         {
-            var result = TryParsePayload(out object payloadObj);
+            if (TryParsePayload(out object rawPayload))
+            {
+                payload = rawPayload as T;
 
-            if (result && payloadObj is T t)
-                payload = t;
+                return payload != null;
+            }
 
-            else
-                payload = null;
+            payload = null;
 
-            return result;
+            return false;
         }
         #endregion
     }

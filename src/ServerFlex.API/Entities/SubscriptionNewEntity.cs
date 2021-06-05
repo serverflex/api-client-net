@@ -6,7 +6,7 @@ namespace ServerFlex.API.Entities
     {
         #region Properties
         /// <summary>
-        /// Gets or sets the event type.
+        /// Gets or sets the event type. See <see cref="Schema.EventType" />.
         /// </summary>
         [JsonProperty("eventType")]
         public string EventType { get; set; }
@@ -18,7 +18,7 @@ namespace ServerFlex.API.Entities
         public string ResourceID { get; set; }
 
         /// <summary>
-        /// Gets or sets the resource type.
+        /// Gets or sets the resource type. See <see cref="Schema.ResourceType" />.
         /// </summary>
         [JsonProperty("resourceType")]
         public string ResourceType { get; set; }
